@@ -7,7 +7,7 @@
                 <template for:each={lookupArray} for:item="item">
                     <div key={item.id}>
                         <div class="suggestionElement" onclick={startClickLookupEvt} data-idx={item.id} data-val={item.value}>
-                            <div data-idx={item.id}>
+                            <div data-idx={item.id} onclick={goToEntity}>
                                 {item.value}
                             </div>
                         </div>

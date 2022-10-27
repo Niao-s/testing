@@ -1,3 +1,24 @@
 {
-  "object": "Contact"
+  "object": "Contact",
+  "fields": [
+    {
+      "elemApiName": "Id",
+      "elemEsqName": "Id"
+    },
+    {
+      "elemApiName": "Name",
+      "elemEsqName": "Name"
+    },
+    {
+      "elemApiName": "Phone",
+      "elemEsqName": "Phone"
+    }
+  ],
+  "filters": [
+    {
+      "fieldApiName": "Name",
+      "fieldValue": "searchValue",
+      "filterType": "contains"
+    }
+  ]
 }

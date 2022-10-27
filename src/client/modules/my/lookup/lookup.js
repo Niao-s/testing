@@ -1,19 +1,11 @@
-import {LightningElement} from 'lwc';
+import {LightningElement, api} from 'lwc';
 import lookupSettings from './settings.json'
 
 export default class Lookup extends LightningElement {
     _handler;
     lookupResult = '';
-    lookupArray = [
-        {
-        id: '123',
-        value: 'Иванов Иван Иванович'
-        },
-        {
-            id: '321',
-            value: 'Петров Петр Петрович'
-        },
-    ];
+    lookupId;
+    lookupArray;
 
     addressTimerId;
 
@@ -32,6 +24,10 @@ export default class Lookup extends LightningElement {
             if (message && message.command) {
                 let command = message.command;
                 console.log(command);
+                if(command === 'setdata'){
+                    let incData = message.data;
+                    this.lookupArray = incData;
+                }
             }
         }
     }
@@ -46,30 +42,42 @@ export default class Lookup extends LightningElement {
 
     handleSearchLookup = (evt) => {
         let inputValue = evt.target.value;
-        console.log(inputValue);
+        this.lookupResult = inputValue;
+        this.lookupId = undefined;
+
+        if(inputValue.length < 3){
+            this.lookupArray = undefined;
+            return;
+        }
+
         clearTimeout(this.addressTimerId);
+
+        let transferData;
+        let serializedData = JSON.stringify(lookupSettings);
+        transferData = serializedData.replace("searchValue", inputValue);
+
         this.addressTimerId = setTimeout( () => {
-            this.sendMsgToParent(JSON.stringify({ command: "GetLookupData", message: lookupSettings }));
+            this.sendMsgToParent(JSON.stringify({ command: "GetLookupData", message: transferData }));
         }, 1000);
     }
 
     startClickLookupEvt = (evt) => {
         evt.stopPropagation();
-        let currentIdx = evt.currentTarget.dataset.idx;
-        let currentVal = evt.currentTarget.dataset.val;
-        this.lookupResult = currentVal;
-        const action = new CustomEvent('vallicked', {
-            detail: {
-                currentIdx: currentIdx,
-                currentVal: currentVal
-            },
-            bubbles: true,
-            composed: true
-        });
 
-        this.dispatchEvent(action);
+        this.lookupResult = evt.currentTarget.dataset.val;
+        this.lookupId = evt.currentTarget.dataset.idx;
+
         this.lookupArray = undefined;
         return false;
+    }
+
+    goToEntity = () => {
+        if(this.lookupId){
+            console.log('no id');
+        }
+        else {
+            console.log(this.lookupId);
+        }
     }
 
     sendMsgToParent = (message) => {

@@ -1,9 +1,7 @@
 .suggestions {
-    position: absolute;
     background-color: white;
     border: 1px solid lightgrey;
     border-radius: 5px;
-    max-width: 372px;
     max-height: 200px;
     overflow-y: auto;
     overflow-x: hidden;
