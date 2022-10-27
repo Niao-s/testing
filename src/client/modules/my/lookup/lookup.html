@@ -1,0 +1,19 @@
+<template>
+    <div class="col-md-3" style="padding: 10px">
+        <input type="text" class="form-control form-control-sm formInput" id="validationCustom11" value={lookupResult} placeholder = "..."
+               oninput={handleSearchLookup}>
+        <template if:true={lookupArray}>
+            <div class="col-md-6 suggestions">
+                <template for:each={lookupArray} for:item="item">
+                    <div key={item.id}>
+                        <div class="suggestionElement" onclick={startClickLookupEvt} data-idx={item.id} data-val={item.value}>
+                            <div data-idx={item.id}>
+                                {item.value}
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </template>
+    </div>
+</template>

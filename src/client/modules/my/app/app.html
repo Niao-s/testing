@@ -1,0 +1,47 @@
+<template>
+    <div style="font-size: 13px; padding: 10px">
+        <form>
+            <div class="col-md-3" style="padding: 10px">
+                <input type="text" class="form-control form-control-sm formInput" id="validationCustom11" value={searchAddress} placeholder = "Адрес"
+                       oninput={handleSearchAddress}>
+                <template if:true={showAddressVariants}>
+                    <div class="col-md-6 suggestions">
+                        <template for:each={finalAddresses} for:item="address">
+                            <div key={address.id}>
+                                <div class="suggestionElement" onclick={setCurrentAddress} data-idx={address.id}>
+                                    <div data-idx={address.id}>
+                                        {address.value}
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </template>
+            </div>
+            <div class="col-md-3" style="padding: 10px">
+                <input type="text" class="form-control form-control-sm formInput" id="validationCustom10" value={searchResult} placeholder = "ИНН"
+                       oninput={handleSearchINN}>
+                <template if:true={showInnVariants}>
+                    <div class="col-md-6 suggestions">
+                        <template for:each={finalSuggestions} for:item="inn">
+                            <div key={inn.id}>
+                                <div class="suggestionElement" onclick={setCurrentOrg} data-idx={inn.id}>
+                                    <div data-idx={inn.id}>
+                                        {inn.inn}: {inn.value}
+                                    </div>
+                                    <div data-idx={inn.id}>
+                                        {inn.address}
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </template>
+            </div>
+        </form>
+    </div>
+    <button type="button" class="btn btn-primary" onclick={tryYaGeocode}>Primary</button>
+    <br>
+    <br>
+    <my-lookup onvallicked={handleLookupValClicked}></my-lookup>
+</template>
