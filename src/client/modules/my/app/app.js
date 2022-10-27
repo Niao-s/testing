@@ -191,4 +191,14 @@ export default class App extends LightningElement {
     handleLookupValClicked = (evt) => {
         console.log(JSON.stringify(evt.detail));
     }
+
+    getLookupData = () => {
+        let data = this.template.querySelector('my-lookup').currentData;
+        console.log(data);
+    }
+
+    tryCheck = async () => {
+        const response = await axios.get('/api/v1/checkDeliveryZone');
+        console.log(response);
+    }
 }

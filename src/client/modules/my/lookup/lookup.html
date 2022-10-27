@@ -1,13 +1,13 @@
 <template>
-    <div class="col-md-3" style="padding: 10px">
-        <input type="text" class="form-control form-control-sm formInput" id="validationCustom11" value={lookupResult} placeholder = "..."
-               oninput={handleSearchLookup}>
+    <div style="padding: 10px">
+        <input type="text" class="form-control form-control-sm formInput" id="validationCustom11" value={lookupResult} placeholder = "Enter value"
+               oninput={handleSearchLookup} onclick={goToEntity}>
         <template if:true={lookupArray}>
-            <div class="col-md-6 suggestions">
+            <div class="suggestions">
                 <template for:each={lookupArray} for:item="item">
                     <div key={item.id}>
                         <div class="suggestionElement" onclick={startClickLookupEvt} data-idx={item.id} data-val={item.value}>
-                            <div data-idx={item.id} onclick={goToEntity}>
+                            <div data-idx={item.id}>
                                 {item.value}
                             </div>
                         </div>

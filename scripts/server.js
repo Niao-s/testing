@@ -77,7 +77,22 @@ app.post("/api/v1/doRequestToDadata", async(req,res) => {
     }
 });
 
-
+app.get("/api/v1/checkDeliveryZone", async(req,res) => {
+    console.log('req');
+    try {
+        let config = {
+            headers: {
+                'X-API-KEY': 'a02856459a4e809e542e60b8563b5c27',
+            }
+        }
+        const response = await axios.get('https://eda.yandex/external/v1/salesforce/courier-zone/check?latitude=55.773449&longitude=37.63164', config);
+        console.log(response);
+        res.send(response.data);
+    }
+    catch (err) {
+        console.log(err);
+    }
+});
 
 app.use('*', (req, res) => {
     res.sendFile(path.resolve(DIST_DIR, 'index.html'));

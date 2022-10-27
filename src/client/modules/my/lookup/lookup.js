@@ -17,13 +17,17 @@ export default class Lookup extends LightningElement {
         this.template.appendChild(styles);
     }
 
+    @api
+    get  currentData () {
+        return {id: this.lookupId, value: this.lookupResult}
+    }
+
     connectedCallback() {
         document.addEventListener('click', this._handler = this.close.bind(this));
         window.onmessage = (event) => {
             let message = event.data ? JSON.parse(event.data) : {};
             if (message && message.command) {
                 let command = message.command;
-                console.log(command);
                 if(command === 'setdata'){
                     let incData = message.data;
                     this.lookupArray = incData;
@@ -72,11 +76,12 @@ export default class Lookup extends LightningElement {
     }
 
     goToEntity = () => {
-        if(this.lookupId){
+        if(!this.lookupId){
             console.log('no id');
         }
         else {
             console.log(this.lookupId);
+            this.sendMsgToParent(JSON.stringify({ command: "GoToLookupEntity", message: {id: this.lookupId, entity: lookupSettings.object} }));
         }
     }
 
