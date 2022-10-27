@@ -1,4 +1,5 @@
 import {LightningElement} from 'lwc';
+import lookupSettings from './settings.json'
 
 export default class Lookup extends LightningElement {
     _handler;
@@ -13,6 +14,8 @@ export default class Lookup extends LightningElement {
             value: 'Петров Петр Петрович'
         },
     ];
+
+    addressTimerId;
 
     constructor() {
         super();
@@ -44,7 +47,10 @@ export default class Lookup extends LightningElement {
     handleSearchLookup = (evt) => {
         let inputValue = evt.target.value;
         console.log(inputValue);
-        this.sendMsgToParent(JSON.stringify({ command: "GetLookupData", searchStr: inputValue }));
+        clearTimeout(this.addressTimerId);
+        this.addressTimerId = setTimeout( () => {
+            this.sendMsgToParent(JSON.stringify({ command: "GetLookupData", message: lookupSettings }));
+        }, 1000);
     }
 
     startClickLookupEvt = (evt) => {
