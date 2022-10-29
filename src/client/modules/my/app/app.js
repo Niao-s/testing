@@ -2,6 +2,7 @@ import { LightningElement } from 'lwc';
 import ymaps from 'ymaps';
 const axios = require('axios');
 import jsonTest from '../../../static_data/testData.json'
+import testJsonData from './jsonTestData.json'
 
 export default class App extends LightningElement {
     currentData = {
@@ -19,6 +20,7 @@ export default class App extends LightningElement {
     finalSuggestions = [];
     finalAddresses = [];
     INN;
+    treeData;
 
 
     constructor() {
@@ -35,6 +37,7 @@ export default class App extends LightningElement {
 
     connectedCallback() {
         console.log(jsonTest);
+        this.treeData = testJsonData;
         ymaps.load('https://api-maps.yandex.ru/2.1/?lang=ru&load=SuggestView,geocode,package.full&apikey=cda026cb-6d1c-42a2-9988-a291cd04bcab')
             .then(maps => {
                 console.log('loaded');
@@ -42,6 +45,13 @@ export default class App extends LightningElement {
             })
             .catch(error => console.log('Failed to load Yandex Maps', error));
 
+    }
+
+    processNode = (evt) => {
+        let currentLvl = evt.currentTarget.dataset.level;
+        let elementToProcess = this.template.querySelector(`[data-level="${currentLvl}"]`);
+        elementToProcess.parentElement.querySelector(".nested").classList.toggle("active");
+        elementToProcess.classList.toggle("caret-down");
     }
 
     handleChange = (evt) => {

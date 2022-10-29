@@ -1,0 +1,58 @@
+[
+  {
+    "lvl": "lvl1",
+    "id": 0,
+    "isParentNode": true,
+    "name": "Beverages",
+    "items": [
+      {
+        "id": 0,
+        "name": "Water"
+      },
+      {
+        "id": 1,
+        "name": "Coffee"
+      },
+      {
+        "id": 2,
+        "name": "Tea",
+        "isParentNode": true,
+        "lvl": "lvl2",
+        "items": [
+          {
+            "id": 0,
+            "name": "Black Tea"
+          },
+          {
+            "id": 1,
+            "name": "White Tea"
+          },
+          {
+            "id": 2,
+            "name": "Green Tea",
+            "isParentNode": true,
+            "lvl": "lvl3",
+            "items": [
+              {
+                "id": 0,
+                "name": "Sencha"
+              },
+              {
+                "id": 1,
+                "name": "Gyokuro"
+              },
+              {
+                "id": 2,
+                "name": "Matcha"
+              },
+              {
+                "id": 3,
+                "name": "Pi Lo Chun"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
