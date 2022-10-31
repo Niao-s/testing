@@ -13,7 +13,7 @@ export default class B2bfinalscreen extends LightningElement {
         },
         CategoryCall: {
             Empty: true,
-            Call: false,
+            WelcomeCall: false,
             Fall: false,
             Info: false,
             Activation: false,
@@ -24,12 +24,60 @@ export default class B2bfinalscreen extends LightningElement {
             ServicePresentation: false,
             Prequalify: false,
             CreativeControl: false,
-            AwaitContractControl: false
+            AwaitContractControl: false,
+            Other: false,
+            Debt: false,
+            CallClient: false,
+            SupportTask: false,
+            Call: false,
+            FirstContact: false,
+            ReanimationCall: false,
+            AutoTask: false
+        },
+        EmailCall: {
+            Empty: true,
+            MailAfterMeeting: false,
+            AutoTask: false,
+            Email: false,
+            Messenger: false,
+            SupportTask: false
+        },
+        TaskCall: {
+            Empty: true,
+            CreativeFormFill: false,
+            Call: false,
+            Free: false,
+            ClientResearch: false,
+            Agreement: false,
+            ContractCancel: false,
+            PaperWork: false,
+            WebForm: false,
+            ScoringCheck: false,
+            AwaitReq: false,
+            Meeting: false,
+            DebtClosed: false,
+            OnControl: false,
+            SupTask: false,
+            WaitForCreative: false,
+            PaymentAwait: false,
+            ContractAwait: false,
+            QualityControlClient: false,
+            GiveContact: false,
+            HandyActs: false,
+            Replay: false,
+            AutoTask: false,
+            CreativeAccept: false,
+            QualityControlResult: false,
+            ToDo: false,
+            Scoring: false,
+            TicketUpdate: false
         }
     }
 
     get isTaskCreateSelected() {return this.finalScreenData.isCreateTask}
     get isCallType() {return this.finalScreenData.Type.Call}
+    get isEmailType() {return this.finalScreenData.Type.Email}
+    get isTaskType() {return this.finalScreenData.Type.Task}
 
     constructor() {
 
@@ -70,6 +118,6 @@ export default class B2bfinalscreen extends LightningElement {
                 }
             });
         }
-        console.log(this.finalScreenData);
+        console.log(JSON.stringify(this.finalScreenData));
     }
 }
