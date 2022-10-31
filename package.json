@@ -23,7 +23,8 @@
         "precommit": "npm run prettier:verify && [ $? -eq 0 ] && npm run lint",
         "prettier": "prettier --write \"**/*.{css,html,js,json,md,ts,yaml,yml}\"",
         "prettier:verify": "prettier --list-different \"**/*.{css,html,js,json,md,ts,yaml,yml}\"",
-        "start": "node scripts/server.js"
+        "start": "node scripts/server.js",
+        "testing": "run-s build start"
     },
     "devDependencies": {
         "eslint": "^7.32.0",

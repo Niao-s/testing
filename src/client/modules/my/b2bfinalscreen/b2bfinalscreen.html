@@ -1,0 +1,47 @@
+<template>
+    <form class="row g-2 needs-validation " novalidate="">
+        <div class="col-md-12">
+            <label for="TaskResult" class="form-label"><b style="color: #ee3322">*</b>Результат звонка</label>
+            <input type="text" class="form-control form-control-sm" id="TaskResult" data-field="TaskResult"
+                   value={finalScreenData.TaskResult} required="" oninput={handleFieldChange}>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="isCreateTask" data-field="isCreateTask"
+                   oninput={handleFieldChange} chacked={finalScreenData.isCreateTask}>
+            <label class="form-check-label" for="isCreateTask">
+                Создать задачу
+            </label>
+        </div>
+        <template if:true={isTaskCreateSelected}>
+            <div class="col-md-12">
+                <label for="validationCustom04" class="form-label"><b style="color: #ee3322">*</b>Тип</label>
+                <select class="form-select form-select-sm" id="validationCustom04" data-field="Type"
+                        onchange={handleFieldChange} required="">
+                    <option disabled selected={finalScreenData.Type.Empty} value=""></option>
+                    <option selected={finalScreenData.Type.Call} value="Call">Звонок</option>
+                    <option selected={finalScreenData.Type.Email} value="Email">Email</option>
+                    <option selected={finalScreenData.Type.Task} value="Task">Задача</option>
+                </select>
+                <template if:true={isCallType}>
+                    <label for="validationCustom05" class="form-label"><b style="color: #ee3322">*</b>Категория</label>
+                    <select class="form-select form-select-sm" id="validationCustom05" data-field="CategoryCall"
+                            onchange={handleFieldChange} required="">
+                        <option disabled selected={finalScreenData.CategoryCall.Empty} value=""></option>
+                        <option selected={finalScreenData.CategoryCall.Call} value="Call">Приветственный звонок</option>
+                        <option selected={finalScreenData.CategoryCall.Fall} value="Fall">Отработать падение клиента</option>
+                        <option selected={finalScreenData.CategoryCall.Info} value="Info">Уточнение информации для скоринга</option>
+                        <option selected={finalScreenData.CategoryCall.Activation} value="Activation">Активация</option>
+                        <option selected={finalScreenData.CategoryCall.ColdCall} value="ColdCall">Холодный звонок</option>
+                        <option selected={finalScreenData.CategoryCall.LPR} value="LPR">Выявление ЛПР</option>
+                        <option selected={finalScreenData.CategoryCall.AnswerCall} value="AnswerCall">Обратная связь по первом заказу</option>
+                        <option selected={finalScreenData.CategoryCall.FirstRideControl} value="FirstRideControl">Контроль первой поездки</option>
+                        <option selected={finalScreenData.CategoryCall.ServicePresentation} value="ServicePresentation">Презентация сервиса</option>
+                        <option selected={finalScreenData.CategoryCall.Prequalify} value="Prequalify">Предквалификация</option>
+                        <option selected={finalScreenData.CategoryCall.CreativeControl} value="CreativeControl">На контроле Креатив</option>
+                        <option selected={finalScreenData.CategoryCall.AwaitContractControl} value="AwaitContractControl">На контроле. Ждем Подписанный контракт</option>
+                    </select>
+                </template>
+            </div>
+        </template>
+    </form>
+</template>
