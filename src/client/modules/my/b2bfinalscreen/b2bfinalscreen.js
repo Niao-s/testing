@@ -71,7 +71,9 @@ export default class B2bfinalscreen extends LightningElement {
             ToDo: false,
             Scoring: false,
             TicketUpdate: false
-        }
+        },
+        NextCallDate: '',
+        NextCallGoal: ''
     }
 
     get isTaskCreateSelected() {return this.finalScreenData.isCreateTask}
@@ -95,8 +97,9 @@ export default class B2bfinalscreen extends LightningElement {
         let elem = this.template.querySelector(`[data-field="${currentField}"]`);
         console.log(elem.tagName);
         if(elem.tagName === 'INPUT'){
-            if(fieldType === 'text'){
+            if(fieldType === 'text' || fieldType === 'datetime-local'){
                 let value = evt.target.value;
+                console.log(value);
                 this.finalScreenData[currentField] = value;
             }
             if(fieldType === 'checkbox'){

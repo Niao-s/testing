@@ -7,95 +7,183 @@
         </div>
         <div class="form-check">
             <input class="form-check-input" type="checkbox" id="isCreateTask" data-field="isCreateTask"
-                   oninput={handleFieldChange} chacked={finalScreenData.isCreateTask}>
+                   oninput={handleFieldChange} checked={finalScreenData.isCreateTask}>
             <label class="form-check-label" for="isCreateTask">
                 Создать задачу
             </label>
         </div>
         <template if:true={isTaskCreateSelected}>
             <div class="col-md-12">
-                <label for="validationCustom04" class="form-label"><b style="color: #ee3322">*</b>Тип</label>
-                <select class="form-select form-select-sm" id="validationCustom04" data-field="Type"
-                        onchange={handleFieldChange} required="">
-                    <option disabled selected={finalScreenData.Type.Empty} value=""></option>
-                    <option selected={finalScreenData.Type.Call} value="Call">Звонок</option>
-                    <option selected={finalScreenData.Type.Email} value="Email">Email</option>
-                    <option selected={finalScreenData.Type.Task} value="Task">Задача</option>
-                </select>
+                <div class="col-md-12" style="padding-bottom: 10px;">
+                    <label for="validationCustom04" class="form-label"><b style="color: #ee3322">*</b>Тип</label>
+                    <select class="form-select form-select-sm" id="validationCustom04" data-field="Type"
+                            onchange={handleFieldChange} required="">
+                        <option disabled selected={finalScreenData.Type.Empty} value=""></option>
+                        <option selected={finalScreenData.Type.Call} value="Call">Звонок</option>
+                        <option selected={finalScreenData.Type.Email} value="Email">Email</option>
+                        <option selected={finalScreenData.Type.Task} value="Task">Задача</option>
+                    </select>
+                </div>
                 <template if:true={isCallType}>
-                    <label for="validationCustom05" class="form-label"><b style="color: #ee3322">*</b>Категория</label>
-                    <select class="form-select form-select-sm" id="validationCustom05" data-field="CategoryCall"
-                            onchange={handleFieldChange} required="">
-                        <option disabled selected={finalScreenData.CategoryCall.Empty} value=""></option>
-                        <option selected={finalScreenData.CategoryCall.WelcomeCall} value="WelcomeCall">Приветственный звонок</option>
-                        <option selected={finalScreenData.CategoryCall.Fall} value="Fall">Отработать падение клиента</option>
-                        <option selected={finalScreenData.CategoryCall.Info} value="Info">Уточнение информации для скоринга</option>
-                        <option selected={finalScreenData.CategoryCall.Activation} value="Activation">Активация</option>
-                        <option selected={finalScreenData.CategoryCall.ColdCall} value="ColdCall">Холодный звонок</option>
-                        <option selected={finalScreenData.CategoryCall.LPR} value="LPR">Выявление ЛПР</option>
-                        <option selected={finalScreenData.CategoryCall.AnswerCall} value="AnswerCall">Обратная связь по первом заказу</option>
-                        <option selected={finalScreenData.CategoryCall.FirstRideControl} value="FirstRideControl">Контроль первой поездки</option>
-                        <option selected={finalScreenData.CategoryCall.ServicePresentation} value="ServicePresentation">Презентация сервиса</option>
-                        <option selected={finalScreenData.CategoryCall.Prequalify} value="Prequalify">Предквалификация</option>
-                        <option selected={finalScreenData.CategoryCall.CreativeControl} value="CreativeControl">На контроле Креатив</option>
-                        <option selected={finalScreenData.CategoryCall.AwaitContractControl} value="AwaitContractControl">На контроле. Ждем Подписанный контракт</option>
-                        <option selected={finalScreenData.CategoryCall.Other} value="Other">Other</option>
-                        <option selected={finalScreenData.CategoryCall.RequisitesControl} value="RequisitesControl">На контроле Реквизиты</option>
-                        <option selected={finalScreenData.CategoryCall.Debt} value="Debt">Долг</option>
-                        <option selected={finalScreenData.CategoryCall.CallClient} value="CallClient">Свяжись с клиентом. Пришла новая заявка от существующего клиента</option>
-                        <option selected={finalScreenData.CategoryCall.SupportTask} value="SupportTask">Задача от Support</option>
-                        <option selected={finalScreenData.CategoryCall.Call} value="Call">Call</option>
-                        <option selected={finalScreenData.CategoryCall.FirstContact} value="FirstContact">Первый контакт</option>
-                        <option selected={finalScreenData.CategoryCall.ReanimationCall} value="ReanimationCall">Звонок от реанимации</option>
-                        <option selected={finalScreenData.CategoryCall.AutoTask} value="AutoTask">Автозадача</option>
-                    </select>
+                    <div class="col-md-12" style="padding-bottom: 10px;">
+                        <label for="validationCustom05" class="form-label"><b
+                                style="color: #ee3322">*</b>Категория</label>
+                        <select class="form-select form-select-sm" id="validationCustom05" data-field="CategoryCall"
+                                onchange={handleFieldChange} required="">
+                            <option disabled selected={finalScreenData.CategoryCall.Empty} value=""></option>
+                            <option selected={finalScreenData.CategoryCall.WelcomeCall} value="WelcomeCall">
+                                Приветственный звонок
+                            </option>
+                            <option selected={finalScreenData.CategoryCall.Fall} value="Fall">Отработать падение
+                                клиента
+                            </option>
+                            <option selected={finalScreenData.CategoryCall.Info} value="Info">Уточнение информации для
+                                скоринга
+                            </option>
+                            <option selected={finalScreenData.CategoryCall.Activation} value="Activation">Активация
+                            </option>
+                            <option selected={finalScreenData.CategoryCall.ColdCall} value="ColdCall">Холодный звонок
+                            </option>
+                            <option selected={finalScreenData.CategoryCall.LPR} value="LPR">Выявление ЛПР</option>
+                            <option selected={finalScreenData.CategoryCall.AnswerCall} value="AnswerCall">Обратная связь
+                                по первом заказу
+                            </option>
+                            <option selected={finalScreenData.CategoryCall.FirstRideControl} value="FirstRideControl">
+                                Контроль первой поездки
+                            </option>
+                            <option selected={finalScreenData.CategoryCall.ServicePresentation}
+                                    value="ServicePresentation">Презентация сервиса
+                            </option>
+                            <option selected={finalScreenData.CategoryCall.Prequalify} value="Prequalify">
+                                Предквалификация
+                            </option>
+                            <option selected={finalScreenData.CategoryCall.CreativeControl} value="CreativeControl">На
+                                контроле Креатив
+                            </option>
+                            <option selected={finalScreenData.CategoryCall.AwaitContractControl}
+                                    value="AwaitContractControl">На контроле. Ждем Подписанный контракт
+                            </option>
+                            <option selected={finalScreenData.CategoryCall.Other} value="Other">Other</option>
+                            <option selected={finalScreenData.CategoryCall.RequisitesControl} value="RequisitesControl">
+                                На контроле Реквизиты
+                            </option>
+                            <option selected={finalScreenData.CategoryCall.Debt} value="Debt">Долг</option>
+                            <option selected={finalScreenData.CategoryCall.CallClient} value="CallClient">Свяжись с
+                                клиентом. Пришла новая заявка от существующего клиента
+                            </option>
+                            <option selected={finalScreenData.CategoryCall.SupportTask} value="SupportTask">Задача от
+                                Support
+                            </option>
+                            <option selected={finalScreenData.CategoryCall.Call} value="Call">Call</option>
+                            <option selected={finalScreenData.CategoryCall.FirstContact} value="FirstContact">Первый
+                                контакт
+                            </option>
+                            <option selected={finalScreenData.CategoryCall.ReanimationCall} value="ReanimationCall">
+                                Звонок от реанимации
+                            </option>
+                            <option selected={finalScreenData.CategoryCall.AutoTask} value="AutoTask">Автозадача
+                            </option>
+                        </select>
+                    </div>
                 </template>
-                <template if:true={isEmailType}>
-                    <label for="validationCustom06" class="form-label"><b style="color: #ee3322">*</b>Категория</label>
-                    <select class="form-select form-select-sm" id="validationCustom06" data-field="EmailCall"
-                            onchange={handleFieldChange} required="">
-                        <option disabled selected={finalScreenData.EmailCall.Empty} value=""></option>
-                        <option selected={finalScreenData.EmailCall.MailAfterMeeting} value="MailAfterMeeting">Письмо после встречи</option>
-                        <option selected={finalScreenData.EmailCall.AutoTask} value="AutoTask">Автозадача</option>
-                        <option selected={finalScreenData.EmailCall.Email} value="Email">Email</option>
-                        <option selected={finalScreenData.EmailCall.Messenger} value="Messenger">Мессенджер</option>
-                        <option selected={finalScreenData.EmailCall.SupportTask} value="ColdCall">Задача от Support</option>
-                    </select>
+                <template if:true={isEmailType} style="padding-bottom: 10px;">
+                    <div class="col-md-12">
+                        <label for="validationCustom06" class="form-label"><b
+                                style="color: #ee3322">*</b>Категория</label>
+                        <select class="form-select form-select-sm" id="validationCustom06" data-field="EmailCall"
+                                onchange={handleFieldChange} required="">
+                            <option disabled selected={finalScreenData.EmailCall.Empty} value=""></option>
+                            <option selected={finalScreenData.EmailCall.MailAfterMeeting} value="MailAfterMeeting">
+                                Письмо после встречи
+                            </option>
+                            <option selected={finalScreenData.EmailCall.AutoTask} value="AutoTask">Автозадача</option>
+                            <option selected={finalScreenData.EmailCall.Email} value="Email">Email</option>
+                            <option selected={finalScreenData.EmailCall.Messenger} value="Messenger">Мессенджер</option>
+                            <option selected={finalScreenData.EmailCall.SupportTask} value="ColdCall">Задача от
+                                Support
+                            </option>
+                        </select>
+                    </div>
                 </template>
-                <template if:true={isTaskType}>
-                    <label for="validationCustom07" class="form-label"><b style="color: #ee3322">*</b>Категория</label>
-                    <select class="form-select form-select-sm" id="validationCustom07" data-field="TaskCall"
-                            onchange={handleFieldChange} required="">
-                        <option disabled selected={finalScreenData.TaskCall.Empty} value=""></option>
-                        <option selected={finalScreenData.TaskCall.CreativeFormFill} value="CreativeFormFill">Заполнение формы Креатива</option>
-                        <option selected={finalScreenData.TaskCall.Call} value="Call">Call</option>
-                        <option selected={finalScreenData.TaskCall.Free} value="Free">Перенос во free</option>
-                        <option selected={finalScreenData.TaskCall.ClientResearch} value="ClientResearch">Изучить клиента</option>
-                        <option selected={finalScreenData.TaskCall.Agreement} value="Agreement">На контроле:Согласование Договора</option>
-                        <option selected={finalScreenData.TaskCall.ContractCancel} value="ContractCancel">Расторжение контракта</option>
-                        <option selected={finalScreenData.TaskCall.PaperWork} value="PaperWork">Paper work</option>
-                        <option selected={finalScreenData.TaskCall.WebForm} value="WebForm">Web form</option>
-                        <option selected={finalScreenData.TaskCall.ScoringCheck} value="ScoringCheck">Проверка скоринг</option>
-                        <option selected={finalScreenData.TaskCall.AwaitReq} value="AwaitReq">Ждем реквизитыа</option>
-                        <option selected={finalScreenData.TaskCall.Meeting} value="Meeting">Meeting</option>
-                        <option selected={finalScreenData.TaskCall.DebtClosed} value="DebtClosed">Долг закрыт</option>
-                        <option selected={finalScreenData.TaskCall.DebtClosed} value="OnControl">На контроле</option>
-                        <option selected={finalScreenData.TaskCall.SupTask} value="SupTask">Задача от Support</option>
-                        <option selected={finalScreenData.TaskCall.WaitForCreative} value="WaitForCreative">Ждем креатив</option>
-                        <option selected={finalScreenData.TaskCall.PaymentAwait} value="PaymentAwait">Контроль оплаты</option>
-                        <option selected={finalScreenData.TaskCall.ContractAwait} value="ContractAwait">Ждем контракт</option>
-                        <option selected={finalScreenData.TaskCall.QualityControlClient} value="QualityControlClient">Контроль качества:проверить клиента</option>
-                        <option selected={finalScreenData.TaskCall.GiveContact} value="GiveContact">Передать контакт</option>
-                        <option selected={finalScreenData.TaskCall.HandyActs} value="HandyActs">Ручные акты</option>
-                        <option selected={finalScreenData.TaskCall.Replay} value="Replay">Проиграть</option>
-                        <option selected={finalScreenData.TaskCall.AutoTask} value="AutoTask">Автозадача</option>
-                        <option selected={finalScreenData.TaskCall.CreativeAccept} value="CreativeAccept">На контроле: Согласование креатива</option>
-                        <option selected={finalScreenData.TaskCall.QualityControlResult} value="QualityControlResult">Контроль качества: результата проверки</option>
-                        <option selected={finalScreenData.TaskCall.ToDo} value="ToDo">To do</option>
-                        <option selected={finalScreenData.TaskCall.Scoring} value="Scoring">Провести скоринг</option>
-                        <option selected={finalScreenData.TaskCall.TicketUpdate} value="TicketUpdate">Обновить информацию в тикете</option>
-                    </select>
+                <template if:true={isTaskType} style="padding-bottom: 10px;">
+                    <div class="col-md-12">
+                        <label for="validationCustom07" class="form-label"><b
+                                style="color: #ee3322">*</b>Категория</label>
+                        <select class="form-select form-select-sm" id="validationCustom07" data-field="TaskCall"
+                                onchange={handleFieldChange} required="">
+                            <option disabled selected={finalScreenData.TaskCall.Empty} value=""></option>
+                            <option selected={finalScreenData.TaskCall.CreativeFormFill} value="CreativeFormFill">
+                                Заполнение формы Креатива
+                            </option>
+                            <option selected={finalScreenData.TaskCall.Call} value="Call">Call</option>
+                            <option selected={finalScreenData.TaskCall.Free} value="Free">Перенос во free</option>
+                            <option selected={finalScreenData.TaskCall.ClientResearch} value="ClientResearch">Изучить
+                                клиента
+                            </option>
+                            <option selected={finalScreenData.TaskCall.Agreement} value="Agreement">На
+                                контроле:Согласование Договора
+                            </option>
+                            <option selected={finalScreenData.TaskCall.ContractCancel} value="ContractCancel">
+                                Расторжение контракта
+                            </option>
+                            <option selected={finalScreenData.TaskCall.PaperWork} value="PaperWork">Paper work</option>
+                            <option selected={finalScreenData.TaskCall.WebForm} value="WebForm">Web form</option>
+                            <option selected={finalScreenData.TaskCall.ScoringCheck} value="ScoringCheck">Проверка
+                                скоринг
+                            </option>
+                            <option selected={finalScreenData.TaskCall.AwaitReq} value="AwaitReq">Ждем реквизитыа
+                            </option>
+                            <option selected={finalScreenData.TaskCall.Meeting} value="Meeting">Meeting</option>
+                            <option selected={finalScreenData.TaskCall.DebtClosed} value="DebtClosed">Долг закрыт
+                            </option>
+                            <option selected={finalScreenData.TaskCall.DebtClosed} value="OnControl">На контроле
+                            </option>
+                            <option selected={finalScreenData.TaskCall.SupTask} value="SupTask">Задача от Support
+                            </option>
+                            <option selected={finalScreenData.TaskCall.WaitForCreative} value="WaitForCreative">Ждем
+                                креатив
+                            </option>
+                            <option selected={finalScreenData.TaskCall.PaymentAwait} value="PaymentAwait">Контроль
+                                оплаты
+                            </option>
+                            <option selected={finalScreenData.TaskCall.ContractAwait} value="ContractAwait">Ждем
+                                контракт
+                            </option>
+                            <option selected={finalScreenData.TaskCall.QualityControlClient}
+                                    value="QualityControlClient">Контроль качества:проверить клиента
+                            </option>
+                            <option selected={finalScreenData.TaskCall.GiveContact} value="GiveContact">Передать
+                                контакт
+                            </option>
+                            <option selected={finalScreenData.TaskCall.HandyActs} value="HandyActs">Ручные акты</option>
+                            <option selected={finalScreenData.TaskCall.Replay} value="Replay">Проиграть</option>
+                            <option selected={finalScreenData.TaskCall.AutoTask} value="AutoTask">Автозадача</option>
+                            <option selected={finalScreenData.TaskCall.CreativeAccept} value="CreativeAccept">На
+                                контроле: Согласование креатива
+                            </option>
+                            <option selected={finalScreenData.TaskCall.QualityControlResult}
+                                    value="QualityControlResult">Контроль качества: результата проверки
+                            </option>
+                            <option selected={finalScreenData.TaskCall.ToDo} value="ToDo">To do</option>
+                            <option selected={finalScreenData.TaskCall.Scoring} value="Scoring">Провести скоринг
+                            </option>
+                            <option selected={finalScreenData.TaskCall.TicketUpdate} value="TicketUpdate">Обновить
+                                информацию в тикете
+                            </option>
+                        </select>
+                    </div>
                 </template>
+            </div>
+            <div class="col-md-12" style="padding-bottom: 10px;">
+                <label for="NextCallDate" class="form-label"><b style="color: #ee3322">*</b>Дата следующего
+                    звонка</label>
+                <input type="datetime-local" class="form-control" id="NextCallDate" data-field="NextCallDate"
+                       value={finalScreenData.NextCallDate} onchange={handleFieldChange}>
+            </div>
+            <div class="col-md-12">
+                <label for="NextCallGoal" class="form-label">Цели след звонка</label>
+                <input type="text" class="form-control form-control-sm" id="NextCallGoal" data-field="NextCallGoal"
+                       value={finalScreenData.NextCallGoal} required="" oninput={handleFieldChange}>
             </div>
         </template>
     </form>
