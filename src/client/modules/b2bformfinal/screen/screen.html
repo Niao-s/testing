@@ -181,12 +181,12 @@
                 <label for="NextCallDate" class="form-label"><b style="color: #ee3322">*</b>Дата следующего
                     звонка</label>
                 <input type="datetime-local" class="form-control form-control-sm" id="NextCallDate" data-field="NextCallDate"
-                       value={finalScreenData.NextCallDate} onchange={handleFieldChange}>
+                       value={finalScreenData.NextCallDate} required="" onchange={handleFieldChange}>
             </div>
             <div class="col-md-12">
                 <label for="NextCallGoal" class="form-label">Цели след звонка</label>
                 <input type="text" class="form-control form-control-sm" id="NextCallGoal" data-field="NextCallGoal"
-                       value={finalScreenData.NextCallGoal} required="" oninput={handleFieldChange}>
+                       value={finalScreenData.NextCallGoal} oninput={handleFieldChange}>
             </div>
             <div class="col-md-12">
                 <label class="form-label">Имя</label>
@@ -197,5 +197,20 @@
                 <b2bformfinal-lkcontempl></b2bformfinal-lkcontempl>
             </div>
         </template>
+        <div class="col-md-12" style="padding-bottom: 10px;">
+            <label for="validationCustom004" class="form-label">Нужно ли отправить письмо</label>
+            <select class="form-select form-select-sm" id="validationCustom004" data-field="SendEmail"
+                    onchange={handleFieldChange}>
+                <option disabled selected={finalScreenData.SendEmail.Empty} value=""></option>
+                <option selected={finalScreenData.SendEmail.Yes} value="Yes">Да</option>
+                <option selected={finalScreenData.SendEmail.No} value="No">Нет</option>
+            </select>
+        </div>
+        <div class="col-md-12">
+            <label for="EmailGoal" class="form-label"><b style="color: #ee3322">*</b>Цель email</label>
+            <input type="text" class="form-control form-control-sm" id="EmailGoal" data-field="EmailGoal"
+                   value={finalScreenData.EmailGoal} required="" oninput={handleFieldChange}>
+        </div>
     </form>
+    <button type="button" class="btn btn-primary" onclick={checkForm}>checkForm</button>
 </template>

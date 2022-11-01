@@ -74,7 +74,13 @@ export default class B2bfinalscreen extends LightningElement {
             TicketUpdate: false
         },
         NextCallDate: '',
-        NextCallGoal: ''
+        NextCallGoal: '',
+        SendEmail: {
+            Empty: true,
+            Yes: false,
+            No: false
+        },
+        EmailGoal: 'Отправить письмо после разговора с клиентом'
     }
     @api
     setLookupData = (data, origin) => {
@@ -85,6 +91,11 @@ export default class B2bfinalscreen extends LightningElement {
         if(origin === 'empl'){
             this.template.querySelector('b2bformfinal-lkcontempl').setArray(data);
         }
+    }
+
+    @api
+    checkForm (event) {
+
     }
 
     get isTaskCreateSelected() {return this.finalScreenData.isCreateTask}
@@ -107,11 +118,18 @@ export default class B2bfinalscreen extends LightningElement {
         let currentField = evt.target.dataset.field;
         let elem = this.template.querySelector(`[data-field="${currentField}"]`);
         console.log(elem.tagName);
+        console.log(elem.hasAttribute('required'));
         if(elem.tagName === 'INPUT'){
             if(fieldType === 'text' || fieldType === 'datetime-local'){
                 let value = evt.target.value;
                 console.log(value);
                 this.finalScreenData[currentField] = value;
+                if(elem.hasAttribute('required') && !value){
+                    elem.classList.add('is-invalid');
+                }
+                else {
+                    elem.classList.remove('is-invalid');
+                }
             }
             if(fieldType === 'checkbox'){
                 let checked = evt.target.checked;

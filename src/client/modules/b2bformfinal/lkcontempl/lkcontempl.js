@@ -27,7 +27,6 @@ export default class Lookup extends LightningElement {
     @api
     setArray(data) {
         this.lookupArray = data;
-        console.log('data ', JSON.stringify(this.lookupArray));
     }
 
     connectedCallback() {
