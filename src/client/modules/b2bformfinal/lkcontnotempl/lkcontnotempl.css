@@ -1,0 +1,18 @@
+.suggestions {
+    background-color: white;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    max-height: 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin: 2px 0 0;
+}
+
+.suggestionElement {
+    cursor: pointer;
+    padding: 10px;
+}
+
+.suggestionElement:hover {
+    background-color: lightgray;
+}

@@ -1,0 +1,32 @@
+{
+  "object": "Contact",
+  "fields": [
+    {
+      "elemApiName": "Id",
+      "elemEsqName": "Id"
+    },
+    {
+      "elemApiName": "Name",
+      "elemEsqName": "Name"
+    },
+    {
+      "elemApiName": "Phone",
+      "elemEsqName": "Phone"
+    }
+  ],
+  "filters": {
+    "logicalOperatorType": "AND",
+    "elems": [
+      {
+        "fieldApiName": "Name",
+        "fieldValue": "searchValue",
+        "filterType": "contain"
+      },
+      {
+        "fieldApiName": "Type.Id",
+        "fieldValue": "60733efc-f36b-1410-a883-16d83cab0980",
+        "filterType": "notequal"
+      }
+    ]
+  }
+}

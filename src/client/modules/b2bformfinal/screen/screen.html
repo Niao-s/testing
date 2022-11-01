@@ -31,6 +31,9 @@
                         <select class="form-select form-select-sm" id="validationCustom05" data-field="CategoryCall"
                                 onchange={handleFieldChange} required="">
                             <option disabled selected={finalScreenData.CategoryCall.Empty} value=""></option>
+                            <option selected={finalScreenData.CategoryCall.Dogon} value="Dogon">
+                                Догон
+                            </option>
                             <option selected={finalScreenData.CategoryCall.WelcomeCall} value="WelcomeCall">
                                 Приветственный звонок
                             </option>
@@ -177,13 +180,21 @@
             <div class="col-md-12" style="padding-bottom: 10px;">
                 <label for="NextCallDate" class="form-label"><b style="color: #ee3322">*</b>Дата следующего
                     звонка</label>
-                <input type="datetime-local" class="form-control" id="NextCallDate" data-field="NextCallDate"
+                <input type="datetime-local" class="form-control form-control-sm" id="NextCallDate" data-field="NextCallDate"
                        value={finalScreenData.NextCallDate} onchange={handleFieldChange}>
             </div>
             <div class="col-md-12">
                 <label for="NextCallGoal" class="form-label">Цели след звонка</label>
                 <input type="text" class="form-control form-control-sm" id="NextCallGoal" data-field="NextCallGoal"
                        value={finalScreenData.NextCallGoal} required="" oninput={handleFieldChange}>
+            </div>
+            <div class="col-md-12">
+                <label class="form-label">Имя</label>
+                <b2bformfinal-lkcontnotempl></b2bformfinal-lkcontnotempl>
+            </div>
+            <div class="col-md-12">
+                <label class="form-label"><b style="color: #ee3322">*</b>Ответственный за задачу</label>
+                <b2bformfinal-lkcontempl></b2bformfinal-lkcontempl>
             </div>
         </template>
     </form>

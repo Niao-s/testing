@@ -6,6 +6,7 @@ export default class Lookup extends LightningElement {
     lookupResult = '';
     lookupId;
     lookupArray;
+    lookupOrigin = 'notempl';
 
     addressTimerId;
 
@@ -71,7 +72,7 @@ export default class Lookup extends LightningElement {
         }
         else {
             console.log(this.lookupId);
-            this.sendMsgToParent(JSON.stringify({ command: "GoToLookupEntity", message: {id: this.lookupId, entity: lookupSettings.object} }));
+            this.sendMsgToParent(JSON.stringify({ command: "GoToLookupEntity", message: {id: this.lookupId, entity: lookupSettings.object}, origin: this.lookupOrigin }));
         }
     }
 

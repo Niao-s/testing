@@ -13,6 +13,7 @@ export default class B2bfinalscreen extends LightningElement {
         },
         CategoryCall: {
             Empty: true,
+            Dogon: false,
             WelcomeCall: false,
             Fall: false,
             Info: false,
