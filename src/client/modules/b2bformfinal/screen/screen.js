@@ -102,7 +102,13 @@ export default class B2bfinalscreen extends LightningElement {
         let isTaskRespLookupValid = this.validateLookupTaskResp();
         console.log(isTaskRespLookupValid);
         if(isValidSelects && isValidInputs && isTaskRespLookupValid){
-            this.processFinalScreenData();
+            let data = this.processFinalScreenData();
+            const sendConfirmEvent = new CustomEvent('confirm', {
+                detail:data,
+                bubbles: true,
+                composed: true
+            });
+            this.dispatchEvent(sendConfirmEvent);
         }
     }
 
@@ -131,6 +137,7 @@ export default class B2bfinalscreen extends LightningElement {
 
         finalScreenData.isCreateTask = this.finalScreenData.isCreateTask;
         console.log(JSON.stringify(finalScreenData));
+        return finalScreenData;
     }
 
     validateInputs = () => {

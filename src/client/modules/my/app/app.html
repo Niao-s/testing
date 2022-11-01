@@ -1,5 +1,7 @@
 <template>
-    <b2bformfinal-screen></b2bformfinal-screen>
+    <b2bformfinal-screen onconfirm={processFinalData}></b2bformfinal-screen>
+    <br>
+    <button type="button" class="btn btn-primary" onclick={validateFinalScreen}>validateFinalScreen</button>
     <div style="font-size: 13px; padding: 10px">
         <form>
             <div class="col-md-3" style="padding: 10px">
@@ -43,11 +45,9 @@
             </div>
         </form>
     </div>
+    <br>
     <button type="button" class="btn btn-primary" onclick={tryYaGeocode}>Primary</button>
     <br>
-    <br>
-    <br>
-    <button type="button" class="btn btn-primary" onclick={getLookupData}>get lookup data</button>
     <br>
     <button type="button" class="btn btn-primary" onclick={tryCheck}>tryCheck</button>
     <br>

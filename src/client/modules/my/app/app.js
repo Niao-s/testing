@@ -223,4 +223,12 @@ export default class App extends LightningElement {
         const response = await axios.get('/api/v1/checkDeliveryZone');
         console.log(response);
     }
+
+    validateFinalScreen = () => {
+        this.template.querySelector('b2bformfinal-screen').checkForm();
+    }
+
+    processFinalData = (evt) => {
+        console.log(JSON.stringify(evt.detail));
+    }
 }
