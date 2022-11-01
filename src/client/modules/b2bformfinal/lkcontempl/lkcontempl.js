@@ -25,6 +25,11 @@ export default class Lookup extends LightningElement {
     }
 
     @api
+    setErrorStyle () {
+        this.template.querySelector('.form-control').classList.add('is-invalid');
+    }
+
+    @api
     setArray(data) {
         this.lookupArray = data;
     }
@@ -69,6 +74,7 @@ export default class Lookup extends LightningElement {
         this.lookupId = evt.currentTarget.dataset.idx;
 
         this.lookupArray = undefined;
+        this.template.querySelector('.form-control').classList.remove('is-invalid');
         return false;
     }
 
