@@ -51,7 +51,9 @@ export default class App extends LightningElement {
                 let command = message.command;
                 if(command === 'setdatalookup'){
                     let incData = message.data;
+                    let origin = message.origin;
                     console.log(JSON.stringify(incData));
+                    this.template.querySelector('b2bformfinal-screen').setLookupData(incData, origin);
                 }
             }
         }

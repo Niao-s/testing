@@ -1,10 +1,11 @@
-import {LightningElement, api} from 'lwc';
+import {LightningElement, api, track} from 'lwc';
 import lookupSettings from './settings.json'
 
 export default class Lookup extends LightningElement {
     _handler;
     lookupResult = '';
     lookupId;
+    @track
     lookupArray;
     lookupOrigin = 'empl';
 
@@ -21,6 +22,12 @@ export default class Lookup extends LightningElement {
     @api
     get currentData () {
         return {id: this.lookupId, value: this.lookupResult}
+    }
+
+    @api
+    setArray(data) {
+        this.lookupArray = data;
+        console.log('data ', JSON.stringify(this.lookupArray));
     }
 
     connectedCallback() {
@@ -52,7 +59,7 @@ export default class Lookup extends LightningElement {
         transferData = serializedData.replace("searchValue", inputValue);
 
         this.addressTimerId = setTimeout( () => {
-            this.sendMsgToParent(JSON.stringify({ command: "GetLookupData", message: transferData }));
+            this.sendMsgToParent(JSON.stringify({ command: "GetLookupData", message: transferData, origin: this.lookupOrigin }));
         }, 1000);
     }
 

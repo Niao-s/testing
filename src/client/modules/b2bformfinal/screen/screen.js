@@ -1,4 +1,4 @@
-import { LightningElement, track } from 'lwc';
+import { LightningElement, track, api } from 'lwc';
 
 export default class B2bfinalscreen extends LightningElement {
     @track
@@ -75,6 +75,16 @@ export default class B2bfinalscreen extends LightningElement {
         },
         NextCallDate: '',
         NextCallGoal: ''
+    }
+    @api
+    setLookupData = (data, origin) => {
+        console.log(origin);
+        if(origin === 'notempl'){
+            this.template.querySelector('b2bformfinal-lkcontnotempl').setArray(data);
+        }
+        if(origin === 'empl'){
+            this.template.querySelector('b2bformfinal-lkcontempl').setArray(data);
+        }
     }
 
     get isTaskCreateSelected() {return this.finalScreenData.isCreateTask}
