@@ -125,7 +125,13 @@ export default class B2bfinalscreen extends LightningElement {
             if(elem.value){
                 finalScreenData[elem.dataset.field] = elem.value;
             }
-        })
+        });
+        let checks = this.template.querySelectorAll('.form-check-input');
+        checks.forEach(elem => {
+            if(elem.checked && elem.value) {
+                finalScreenData[elem.dataset.field] = elem.value;
+            }
+        });
         if(this.finalScreenData.isCreateTask){
             let firstLookupData = this.template.querySelector('b2bformfinal-lkcontnotempl').currentData;
             if(firstLookupData.id){
@@ -223,6 +229,9 @@ export default class B2bfinalscreen extends LightningElement {
                 let checked = evt.target.checked;
                 this.finalScreenData[currentField] = checked;
             }
+            if(fieldType === 'radio') {
+                this.finalScreenData[currentField] = evt.target.value;
+            }
         }
         if (elem.tagName === 'SELECT') {
             let value = evt.target.value;
@@ -238,5 +247,6 @@ export default class B2bfinalscreen extends LightningElement {
                 elem.classList.remove('is-invalid');
             }
         }
+
     }
 }
