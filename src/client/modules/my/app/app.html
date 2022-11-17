@@ -7,7 +7,7 @@
             <div class="col-md-3" style="padding: 10px">
                 <input type="text" class="form-control form-control-sm formInput" id="validationCustom11"
                        value={searchAddress} placeholder="Адрес"
-                       oninput={handleSearchAddress}>
+                       oninput={handleSearchAddress} onfocusout={handleAddressChange}>
                 <template if:true={showAddressVariants}>
                     <div class="col-md-6 suggestions">
                         <template for:each={finalAddresses} for:item="address">

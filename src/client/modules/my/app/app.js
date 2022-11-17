@@ -19,9 +19,9 @@ export default class App extends LightningElement {
     searchAddress = '';
     finalSuggestions = [];
     finalAddresses = [];
-    INN;
+    cachedAddress;
     treeData;
-
+    _handler;
 
     constructor() {
 
@@ -38,6 +38,7 @@ export default class App extends LightningElement {
     connectedCallback() {
         console.log(jsonTest);
         this.treeData = testJsonData;
+        document.addEventListener('click', this._handler = this.close.bind(this));
         ymaps.load('https://api-maps.yandex.ru/2.1/?lang=ru&load=SuggestView,geocode,package.full&apikey=cda026cb-6d1c-42a2-9988-a291cd04bcab')
             .then(maps => {
                 console.log('loaded');
@@ -57,6 +58,17 @@ export default class App extends LightningElement {
             }
         }
 
+    }
+
+    disconnectedCallback() {
+        document.removeEventListener('click', this._handler);
+    }
+    ignore(event) {
+        event.stopPropagation();
+        return false;
+    }
+    close() {
+        this.finalAddresses = [];
     }
 
     processNode = (evt) => {
@@ -172,13 +184,19 @@ export default class App extends LightningElement {
 
     setCurrentAddress = (evt) => {
         let currentIdx = evt.currentTarget.dataset.idx;
-        console.log(currentIdx);
         let currentElem = this.finalAddresses.find(elem => {
             return elem.id == currentIdx
         });
         console.log(currentElem);
         this.searchAddress = currentElem.value;
+        this.cachedAddress = currentElem.value;
         this.finalAddresses = [];
+    }
+
+    handleAddressChange = () => {
+        if(this.searchAddress !== this.cachedAddress){
+            this.searchAddress = this.cachedAddress;
+        }
     }
 
     doRequest = async (reqQuery) => {
@@ -208,6 +226,7 @@ export default class App extends LightningElement {
         console.log(currentElem);
         this.searchResult = currentElem.inn + ' ' + currentElem.value + ' ' + currentElem.address;
         this.finalSuggestions = [];
+        this.ignore(evt);
     }
 
     handleLookupValClicked = (evt) => {
