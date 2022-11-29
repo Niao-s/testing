@@ -1,0 +1,16 @@
+.customRow {
+    padding: 10px;
+    border: 1px solid lightgrey;
+}
+
+.customBtn {
+    background-color: rgb(255, 224, 51);
+    color: black;
+    border-radius: 5px;
+    padding: 10px;
+    border: none;
+}
+
+.customBtn:hover {
+    background-color: rgb(255, 224, 51);
+}

@@ -1,0 +1,26 @@
+<template>
+    <div class="container">
+        <template if:true={restData}>
+            <template for:each={restData} for:item="rest">
+                <div key={rest.id} style="margin-bottom: 20px;">
+                    <div class="row customRow">
+                        <div class="col" style="border-right: 1px solid lightgray;">
+                            <div style="margin-bottom: 5px;"><b>Название ресторана:</b> {rest.name}</div>
+                            <div style="margin-bottom: 5px;"><b>ФИО владельца:</b> {rest.owner}</div>
+                            <div style="margin-bottom: 5px;"><b>Телефон:</b> {rest.phone}</div>
+                        </div>
+                        <div class="col">
+                            <div style="margin-bottom: 5px;"><b>Город:</b> {rest.city}</div>
+                            <div style="margin-bottom: 5px;"><b>Адрес:</b> {rest.address}</div>
+                        </div>
+                    </div>
+                    <div class="row customRow">
+                        <div class="col">
+                            <button data-ent={rest.entId} type="button" class="customBtn" onclick={openRestForm}>Открыть форму</button>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </template>
+    </div>
+</template>
