@@ -1,0 +1,16 @@
+<template>
+    <div style="padding: 10px">
+        <div style="padding-bottom: 10px">
+            <input type="text" class="form-control formInput" onfocus={setMask} oninput={handleEmailInput}
+                   onblur={validateEmail} placeholder="Enter email">
+        </div>
+        <div style="padding-bottom: 10px">
+            <input type="text" class="form-control formInput Phone" oninput={handlePhoneInput} onblur={validatePhone}
+                   placeholder="Enter phone">
+        </div>
+        <div>
+            <input type="text" data-type="nightDeliveryFromStart" class="form-control time start" data-nightstart="Mon"
+                   style="text-align:center;" placeholder="23:00" oninput={validateFrom}>
+        </div>
+    </div>
+</template>

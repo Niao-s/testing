@@ -1,0 +1,11 @@
+.formInput {
+    border-radius: 1.25rem;
+    border-color: #ececec;
+    background-color: #ececec;
+}
+
+.form-control:focus {
+    border-color: #fce000;
+    box-shadow: none !important;
+    outline: 0 none;
+}
