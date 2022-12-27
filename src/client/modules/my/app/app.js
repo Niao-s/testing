@@ -154,6 +154,9 @@ export default class App extends LightningElement {
         let latitude = coordinates &&  coordinates[0] ? coordinates[0] : '';
         let longitude = coordinates &&  coordinates[1] ? coordinates[1] : '';
 
+        let translatedAddress = obj.properties._data.text;
+        console.log(translatedAddress);
+
         comp.forEach(elem => {
             if(elem.kind === 'locality') {
                 citySelected = elem.name;
@@ -176,7 +179,8 @@ export default class App extends LightningElement {
             street: street,
             house: house,
             latitude: latitude,
-            longitude: longitude
+            longitude: longitude,
+            translatedAddress: translatedAddress
         }
         console.log(geoObj);
         return geoObj;

@@ -1,115 +1,115 @@
 <template>
 <!--    <my-rest></my-rest>-->
 <my-inputs></my-inputs>
-<!--    <b2bformfinal-screen onconfirm={processFinalData}></b2bformfinal-screen>-->
-<!--    <br>-->
-<!--    <button type="button" class="btn btn-primary" onclick={validateFinalScreen}>validateFinalScreen</button>-->
-<!--    <div style="font-size: 13px; padding: 10px">-->
-<!--        <form>-->
-<!--            <div class="col-md-3" style="padding: 10px">-->
-<!--                <input type="text" class="form-control form-control-sm formInput" id="validationCustom11"-->
-<!--                       value={searchAddress} placeholder="Адрес"-->
-<!--                       oninput={handleSearchAddress} onfocusout={handleAddressChange}>-->
-<!--                <template if:true={showAddressVariants}>-->
-<!--                    <div class="col-md-6 suggestions">-->
-<!--                        <template for:each={finalAddresses} for:item="address">-->
-<!--                            <div key={address.id}>-->
-<!--                                <div class="suggestionElement" onclick={setCurrentAddress} data-idx={address.id}>-->
-<!--                                    <div data-idx={address.id}>-->
-<!--                                        {address.value}-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </template>-->
-<!--                    </div>-->
-<!--                </template>-->
-<!--            </div>-->
-<!--            <div class="col-md-3" style="padding: 10px">-->
-<!--                <input type="text" class="form-control form-control-sm formInput" id="validationCustom10"-->
-<!--                       value={searchResult} placeholder="ИНН"-->
-<!--                       oninput={handleSearchINN}>-->
-<!--                <template if:true={showInnVariants}>-->
-<!--                    <div class="col-md-6 suggestions">-->
-<!--                        <template for:each={finalSuggestions} for:item="inn">-->
-<!--                            <div key={inn.id}>-->
-<!--                                <div class="suggestionElement" onclick={setCurrentOrg} data-idx={inn.id}>-->
-<!--                                    <div data-idx={inn.id}>-->
-<!--                                        {inn.inn}: {inn.value}-->
-<!--                                    </div>-->
-<!--                                    <div data-idx={inn.id}>-->
-<!--                                        {inn.address}-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </template>-->
-<!--                    </div>-->
-<!--                </template>-->
-<!--            </div>-->
-<!--        </form>-->
-<!--    </div>-->
-<!--    <br>-->
-<!--    <button type="button" class="btn btn-primary" onclick={tryYaGeocode}>Primary</button>-->
-<!--    <br>-->
-<!--    <br>-->
-<!--    <button type="button" class="btn btn-primary" onclick={tryCheck}>tryCheck</button>-->
-<!--    <br>-->
-<!--    <template if:true={treeData}>-->
-<!--        <ul class="myUL">-->
-<!--            <template for:each={treeData} for:item="currentNode">-->
-<!--                <div key={currentNode.id}>-->
-<!--                    <template if:true={currentNode.isParentNode}>-->
-<!--                        <li><span class="caret" data-level={currentNode.lvl}-->
-<!--                                  onclick={processNode}>{currentNode.name}</span>-->
-<!--                            <ul class="nested">-->
-<!--                                <template for:each={currentNode.items} for:item="subItem">-->
-<!--                                    <div key={subItem.id}>-->
-<!--                                        <template if:true={subItem.isParentNode}>-->
-<!--                                            <li><span class="caret" data-level={subItem.lvl}-->
-<!--                                                      onclick={processNode}>{subItem.name}</span>-->
-<!--                                                <ul class="nested">-->
-<!--                                                    <template for:each={subItem.items} for:item="subSubItem">-->
-<!--                                                        <div key={subSubItem.id}>-->
-<!--                                                            <template if:true={subSubItem.isParentNode}>-->
-<!--                                                                <li><span class="caret" data-level={subSubItem.lvl}-->
-<!--                                                                          onclick={processNode}>{subSubItem.name}</span>-->
-<!--                                                                    <ul class="nested">-->
-<!--                                                                        <template for:each={subSubItem.items} for:item="subSubSubItem">-->
-<!--                                                                            <div key={subSubSubItem.id}>-->
-<!--                                                                                <li>-->
-<!--                                                                                    {subSubSubItem.name}-->
-<!--                                                                                </li>-->
-<!--                                                                            </div>-->
-<!--                                                                        </template>-->
-<!--                                                                    </ul>-->
-<!--                                                                </li>-->
-<!--                                                            </template>-->
-<!--                                                            <template if:false={subSubItem.isParentNode}>-->
-<!--                                                                <li>-->
-<!--                                                                    {subSubItem.name}-->
-<!--                                                                </li>-->
-<!--                                                            </template>-->
-<!--                                                        </div>-->
-<!--                                                    </template>-->
-<!--                                                </ul>-->
-<!--                                            </li>-->
-<!--                                        </template>-->
-<!--                                        <template if:false={subItem.isParentNode}>-->
-<!--                                            <li>-->
-<!--                                                {subItem.name}-->
-<!--                                            </li>-->
-<!--                                        </template>-->
-<!--                                    </div>-->
-<!--                                </template>-->
-<!--                            </ul>-->
-<!--                        </li>-->
-<!--                    </template>-->
-<!--                    <template if:false={currentNode.isParentNode}>-->
-<!--                        <li>-->
-<!--                            {currentNode.name}-->
-<!--                        </li>-->
-<!--                    </template>-->
-<!--                </div>-->
-<!--            </template>-->
-<!--        </ul>-->
-<!--    </template>-->
+    <b2bformfinal-screen onconfirm={processFinalData}></b2bformfinal-screen>
+    <br>
+    <button type="button" class="btn btn-primary" onclick={validateFinalScreen}>validateFinalScreen</button>
+    <div style="font-size: 13px; padding: 10px">
+        <form>
+            <div class="col-md-3" style="padding: 10px">
+                <input type="text" class="form-control form-control-sm formInput" id="validationCustom11"
+                       value={searchAddress} placeholder="Адрес"
+                       oninput={handleSearchAddress} onfocusout={handleAddressChange}>
+                <template if:true={showAddressVariants}>
+                    <div class="col-md-6 suggestions">
+                        <template for:each={finalAddresses} for:item="address">
+                            <div key={address.id}>
+                                <div class="suggestionElement" onclick={setCurrentAddress} data-idx={address.id}>
+                                    <div data-idx={address.id}>
+                                        {address.value}
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </template>
+            </div>
+            <div class="col-md-3" style="padding: 10px">
+                <input type="text" class="form-control form-control-sm formInput" id="validationCustom10"
+                       value={searchResult} placeholder="ИНН"
+                       oninput={handleSearchINN}>
+                <template if:true={showInnVariants}>
+                    <div class="col-md-6 suggestions">
+                        <template for:each={finalSuggestions} for:item="inn">
+                            <div key={inn.id}>
+                                <div class="suggestionElement" onclick={setCurrentOrg} data-idx={inn.id}>
+                                    <div data-idx={inn.id}>
+                                        {inn.inn}: {inn.value}
+                                    </div>
+                                    <div data-idx={inn.id}>
+                                        {inn.address}
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </template>
+            </div>
+        </form>
+    </div>
+    <br>
+    <button type="button" class="btn btn-primary" onclick={tryYaGeocode}>Primary</button>
+    <br>
+    <br>
+    <button type="button" class="btn btn-primary" onclick={tryCheck}>tryCheck</button>
+    <br>
+    <template if:true={treeData}>
+        <ul class="myUL">
+            <template for:each={treeData} for:item="currentNode">
+                <div key={currentNode.id}>
+                    <template if:true={currentNode.isParentNode}>
+                        <li><span class="caret" data-level={currentNode.lvl}
+                                  onclick={processNode}>{currentNode.name}</span>
+                            <ul class="nested">
+                                <template for:each={currentNode.items} for:item="subItem">
+                                    <div key={subItem.id}>
+                                        <template if:true={subItem.isParentNode}>
+                                            <li><span class="caret" data-level={subItem.lvl}
+                                                      onclick={processNode}>{subItem.name}</span>
+                                                <ul class="nested">
+                                                    <template for:each={subItem.items} for:item="subSubItem">
+                                                        <div key={subSubItem.id}>
+                                                            <template if:true={subSubItem.isParentNode}>
+                                                                <li><span class="caret" data-level={subSubItem.lvl}
+                                                                          onclick={processNode}>{subSubItem.name}</span>
+                                                                    <ul class="nested">
+                                                                        <template for:each={subSubItem.items} for:item="subSubSubItem">
+                                                                            <div key={subSubSubItem.id}>
+                                                                                <li>
+                                                                                    {subSubSubItem.name}
+                                                                                </li>
+                                                                            </div>
+                                                                        </template>
+                                                                    </ul>
+                                                                </li>
+                                                            </template>
+                                                            <template if:false={subSubItem.isParentNode}>
+                                                                <li>
+                                                                    {subSubItem.name}
+                                                                </li>
+                                                            </template>
+                                                        </div>
+                                                    </template>
+                                                </ul>
+                                            </li>
+                                        </template>
+                                        <template if:false={subItem.isParentNode}>
+                                            <li>
+                                                {subItem.name}
+                                            </li>
+                                        </template>
+                                    </div>
+                                </template>
+                            </ul>
+                        </li>
+                    </template>
+                    <template if:false={currentNode.isParentNode}>
+                        <li>
+                            {currentNode.name}
+                        </li>
+                    </template>
+                </div>
+            </template>
+        </ul>
+    </template>
 </template>

@@ -66,7 +66,7 @@ app.post("/api/v1/doRequestToDadata", async(req,res) => {
                 Authorization: 'Token 7877cbceae35dd583719c5b5356e70e4410ed6d1',
             }
         }
-        const response = await axios.post('https://suggestions.dadata.ru/suggestions/api/4_1/rs/findById/party', {
+        const response = await axios.post('https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/party', {
             query: body.query,
             count: 5
         }, config)
