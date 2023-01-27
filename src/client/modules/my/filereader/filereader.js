@@ -91,7 +91,6 @@ export default class Filereader extends LightningElement {
         let dataObj = {};
         dataObj.base64Data = this.compressedDataStr;
         dataObj.fileName = this.name;
-        dataObj.fileType = this.ext;
 
         const response = await axios.post('/api/v1/doRequestToCreatio', dataObj);
         console.log(response);
