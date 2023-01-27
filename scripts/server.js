@@ -77,6 +77,25 @@ app.post("/api/v1/doRequestToDadata", async(req,res) => {
     }
 });
 
+app.post("/api/v1/doRequestToCreatio", async(req,res) => {
+    console.log(JSON.stringify(req.body));
+    let body = req.body;
+    if(!req.body) return res.sendStatus(400);
+    try {
+        let config = {
+            headers: {
+                'X-External-API-Key': '',
+                'X-External-Service': ''
+            }
+        }
+        const response = await axios.post('http://dev1.nau.io:8015/0/ServiceModel/GoFileUploader.svc/UploadFile', body, config)
+        res.send(response.data);
+    }
+    catch (err) {
+        console.log(err);
+    }
+});
+
 app.get("/api/v1/checkDeliveryZone", async(req,res) => {
     console.log('req');
     try {

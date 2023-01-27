@@ -1,21 +1,24 @@
 import { LightningElement } from 'lwc';
+const axios = require('axios');
 
 export default class Filereader extends LightningElement {
 
     imageUrl;
+    compressedDataStr;
+    ext;
     SavePhoto = async (evt) => {
         let file = evt.target.files[0];
         let name = file.name;
         let lastDot = name.lastIndexOf('.');
         let ext = name.substring(lastDot + 1);
-        ext = ext.toLowerCase();
-        console.log(ext);
+        this.ext = ext.toLowerCase();
+        console.log(this.ext);
         this.imageUrl = URL.createObjectURL(file);
 
         let dataToUpl = await this.getReaderAsDataUrlResult(file);
-        let compressedDataStr = await this.getImageProcessing(dataToUpl);
+        this.compressedDataStr = await this.getImageProcessing(dataToUpl);
 
-        console.log('upload data: ' + compressedDataStr);
+        console.log('upload data: ' + this.compressedDataStr);
     }
 
     getReaderAsDataUrlResult = (file) => {
@@ -51,6 +54,16 @@ export default class Filereader extends LightningElement {
                 resolve(newDataUrl);
             }
         });
+    }
+
+    uploadFile = async () => {
+        let dataObj = {};
+        dataObj.base64Data = this.compressedDataStr;
+        dataObj.fileName = 'test';
+        dataObj.fileType = this.ext;
+
+        const response = await axios.post('/api/v1/doRequestToCreatio', dataObj);
+        console.log(response);
     }
 
 }
