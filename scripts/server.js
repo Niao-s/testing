@@ -15,13 +15,9 @@ app.use(
 );
 app.use(compression());
 
-app.use(
-    express.urlencoded({
-        extended: true,
-    })
-);
-
-app.use(express.json());
+//For http response parse
+app.use(express.json({limit: '50mb'}));
+app.use(express.urlencoded({extended: true, limit: '50mb'}));
 
 const HOST = process.env.HOST || 'localhost';
 const PORT = process.env.PORT || 3001;
