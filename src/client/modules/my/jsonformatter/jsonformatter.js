@@ -330,20 +330,15 @@ export default class Jsonformatter extends LightningElement {
         ']';
 
     connectedCallback() {
-        let translatedArray = [];
         let arrayFromInitialJson = JSON.parse(this.jsonForTranslate);
         let translatingArr = JSON.parse(this.jsonWithTranslate);
         arrayFromInitialJson.forEach(elem =>{
             let elemWithTranslate = translatingArr.find(el => el.KitchenRu === elem.name);
             if(elemWithTranslate){
-                let newElem = {
-                    guid: elem.guid,
-                    name: elemWithTranslate.KitchenFr,
-                    checked: false
-                }
-                translatedArray = [...translatedArray, newElem];
+                elem.name = elemWithTranslate.KitchenFr;
             }
         });
-        console.log(JSON.stringify(translatedArray));
+        console.log(JSON.stringify(arrayFromInitialJson));
+        console.log(arrayFromInitialJson.length);
     }
 }
