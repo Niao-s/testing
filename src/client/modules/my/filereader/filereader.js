@@ -30,6 +30,24 @@ export default class Filereader extends LightningElement {
         console.log('upload data: ' + this.compressedDataStr);
     }
 
+    showFile = () => {
+        let base64 = this.compressedDataStr;
+        const blob = this.base64ToBlob( base64, 'application/pdf' );
+        const url = URL.createObjectURL( blob );
+        const pdfWindow = window.open("");
+        pdfWindow.document.write("<iframe width='100%' height='100%' src='" + url + "'></iframe>");
+    }
+
+    base64ToBlob = ( base64, type = "application/octet-stream" ) =>{
+        const binStr = atob( base64 );
+        const len = binStr.length;
+        const arr = new Uint8Array(len);
+        for (let i = 0; i < len; i++) {
+            arr[ i ] = binStr.charCodeAt( i );
+        }
+        return new Blob( [ arr ], { type: type } );
+    }
+
     getReaderAsDataUrlResult = (file) => {
         return new Promise((resolve, reject) => {
             const reader = new FileReader();
