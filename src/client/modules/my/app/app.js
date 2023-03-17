@@ -46,17 +46,17 @@ export default class App extends LightningElement {
             })
             .catch(error => console.log('Failed to load Yandex Maps', error));
 
-        window.onmessage = (event) => {
-            let message = event.data ? JSON.parse(event.data) : {};
-            if (message && message.command) {
-                let command = message.command;
-                if(command === 'setdatalookup'){
-                    let incData = message.data;
-                    let origin = message.origin;
-                    this.template.querySelector('b2bformfinal-screen').setLookupData(incData, origin);
-                }
-            }
-        }
+        // window.onmessage = (event) => {
+        //     let message = event.data ? JSON.parse(event.data) : {};
+        //     if (message && message.command) {
+        //         let command = message.command;
+        //         if(command === 'setdatalookup'){
+        //             let incData = message.data;
+        //             let origin = message.origin;
+        //             this.template.querySelector('b2bformfinal-screen').setLookupData(incData, origin);
+        //         }
+        //     }
+        // }
 
     }
 

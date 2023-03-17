@@ -105,6 +105,11 @@ export default class Filereader extends LightningElement {
         });
     }
 
+    yaMetrikTest = () => {
+        ym(92847531,'reachGoal','btn-click-me');
+        console.log('click');
+    }
+
     uploadFile = async () => {
         let dataObj = {};
         dataObj.base64Data = this.compressedDataStr;
