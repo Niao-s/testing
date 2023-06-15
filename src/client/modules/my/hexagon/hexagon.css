@@ -1,0 +1,23 @@
+/**
+ * Created by Niao on 19.12.2020.
+ */
+canvas {
+
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.settings {
+    width: 200px;
+    padding: 10px;
+    background-color: white;
+    position: fixed;
+    z-index: 999;
+}
+
+.settings_area {
+    border-radius: 5px;
+    border: 1px solid lightgrey;
+    padding: 10px;
+}

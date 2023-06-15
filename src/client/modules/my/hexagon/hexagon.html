@@ -1,0 +1,15 @@
+<!--
+ - Created by Niao on 19.12.2020.
+ -->
+
+<!-- Hexagon -->
+<template>
+    <div class="settings">
+        <div class="settings_area">
+            <input type="number" name="input1" data-value="len" label="param 1" value={opts.len}>
+            <input type="number" name="input2" data-value="count" label="param 2" value={opts.count}>
+        </div>
+        <button variant="brand" label="Apply" title="Apply" onclick={applySettings} class="slds-m-left_x-small">Apply Settings</button>
+    </div>
+    <canvas id="canvas"></canvas>
+</template>
