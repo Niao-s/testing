@@ -22,6 +22,19 @@ export default class App extends LightningElement {
     cachedAddress;
     treeData;
     _handler;
+    testData = {
+        common: "common text",
+        response: [
+            {
+                id: 0,
+                text: "text 0"
+            },
+            {
+                id: 1,
+                text: "text 1"
+            }
+        ]
+    }
 
     constructor() {
 
@@ -46,6 +59,9 @@ export default class App extends LightningElement {
             })
             .catch(error => console.log('Failed to load Yandex Maps', error));
 
+        let val = this.resolve("response.0.text", this.testData);
+        console.log(val);
+
         // window.onmessage = (event) => {
         //     let message = event.data ? JSON.parse(event.data) : {};
         //     if (message && message.command) {
@@ -58,6 +74,12 @@ export default class App extends LightningElement {
         //     }
         // }
 
+    }
+
+    resolve = (path, obj) => {
+        return path.split('.').reduce(function(prev, curr) {
+            return prev ? prev[curr] : null
+        }, obj || self)
     }
 
     disconnectedCallback() {

@@ -32,6 +32,29 @@ setHeaders = (res) => {
 
 app.use(express.static(DIST_DIR, {setHeaders: setHeaders}));
 
+const pool = require('./api/dbConfig');
+
+
+app.get("/api/v1/pool", async (req, res) => {
+    try {
+        console.log('recieved');
+        await pool.query(`
+    CREATE TABLE IF NOT EXISTS request_schema (
+        id SERIAL NOT NULL PRIMARY KEY,
+        json_structure VARCHAR(1000),
+        created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    );`, (error, results) => {
+            if (error) {
+                throw error
+            }
+        });
+        res.send("ok");
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+
 app.get("/api/v1/sample", async (req, res) => {
     try {
         console.log('recieved');
