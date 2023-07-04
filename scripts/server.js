@@ -34,7 +34,6 @@ app.use(express.static(DIST_DIR, {setHeaders: setHeaders}));
 
 const pool = require('./api/dbConfig');
 
-
 app.get("/api/v1/pool", async (req, res) => {
     try {
         console.log('recieved');
