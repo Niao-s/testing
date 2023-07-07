@@ -4,6 +4,7 @@ const helmet = require('helmet');
 const express = require('express');
 const path = require('path');
 const axios = require('axios');
+const fs = require('fs');
 
 const app = express();
 
@@ -39,7 +40,9 @@ dbInit();
 app.get("/api/v1/pool", async (req, res) => {
     try {
         console.log('recieved');
-        res.send("ok");
+        const data = fs.readFileSync(__dirname + '/test.txt', 'utf8');
+        console.log(data);
+        res.send(data);
     } catch (err) {
         console.log(err);
     }
