@@ -31,11 +31,22 @@ setHeaders = (res) => {
     res.setHeader('X-Frame-Options', 'ALLOWALL');
 }
 
-app.use(express.static(DIST_DIR, {setHeaders: setHeaders}));
-
 const pool = require('./api/dbConfig');
 const dbInit = require('./api/dbInit');
 dbInit();
+
+app.use(function(req, res, next) {
+    console.log('Middleware says %s %s', req.method, req.url);
+    console.log(req.query.user);
+    if(req.query.user !== 'test'){
+        console.log('correct');
+        next();
+    }
+    else {
+        console.log('wrong');
+        res.redirect('/login');
+    }
+})
 
 app.get("/api/v1/pool", async (req, res) => {
     try {
@@ -125,6 +136,8 @@ app.get("/api/v1/checkDeliveryZone", async(req,res) => {
         console.log(err);
     }
 });
+
+app.use(express.static(DIST_DIR));
 
 app.use('*', (req, res) => {
     res.sendFile(path.resolve(DIST_DIR, 'index.html'));
