@@ -5,6 +5,7 @@ const express = require('express');
 const path = require('path');
 const axios = require('axios');
 const fs = require('fs');
+const jwt = require("jsonwebtoken");
 
 const app = express();
 
@@ -37,15 +38,15 @@ dbInit();
 
 app.use(function(req, res, next) {
     console.log('Middleware says %s %s', req.method, req.url);
-    console.log(req.query.user);
-    if(req.query.user !== 'test'){
-        console.log('correct');
-        next();
+    console.log(req.query.token);
+    let token_to_verify = req.query.token;
+    try {
+        let decoded = jwt.verify(token_to_verify, 'AUTH_CODE_STR');
+        console.log(decoded);
+    } catch(err) {
+        console.log('wrong token');
     }
-    else {
-        console.log('wrong');
-        res.redirect('/login');
-    }
+    next();
 })
 
 app.get("/api/v1/pool", async (req, res) => {
@@ -59,6 +60,17 @@ app.get("/api/v1/pool", async (req, res) => {
     }
 });
 
+app.get('/api/sighn_token',(req, res) => {
+    let test_user = {
+        username: 'test',
+        userpassword: 'pass',
+        email: 'test@mail.com',
+        phone: '123456789'
+    }
+    let code_str = 'AUTH_CODE_STR';
+    let token = jwt.sign(test_user, code_str, { expiresIn: '1h' });
+    res.send(token);
+});
 
 app.get("/api/v1/sample", async (req, res) => {
     try {
