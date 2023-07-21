@@ -119,13 +119,19 @@ app.post("/doSomeCode", async(req,res) => {
     let body = req.body;
     if(!req.body) return res.sendStatus(400);
     try {
-        const context = body;
-        vm.createContext(context);
-        const code = 'phone = phone.replace("+7", ""); ' +
-            'if(country == "RU")' +
-            '{country = "Russia"} ' +
-            'else { country = "Other"}';
-        vm.runInContext(code, context);
+        let context = {
+            require,
+            console,
+            ...body
+        };
+        const code = 'const crypto = require(\'crypto\'); \n' +
+            'var uuid = crypto.randomUUID();\n' +
+            'console.log(uuid);' +
+        'phone = phone.replace("+7", "");' +
+                'if(country == "RU")' +
+                '{country = "Russia"} ' +
+                'else { country = "Other"} ;';
+        vm.runInNewContext(code, context);
         console.log(context.phone);
         res.send(context);
     }
