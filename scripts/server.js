@@ -133,7 +133,7 @@ app.post("/doSomeCode", async(req,res) => {
                 'if(country == "RU")' +
                 '{country = "Russia"} ' +
                 'else { country = "Other"}; ' +
-            'var randName = generate_random_name();';
+            'var randName = generate_random_name(name, phone, email);';
         vm.runInNewContext(code, context);
         console.log(context.phone);
         res.send(context);
