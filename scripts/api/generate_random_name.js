@@ -1,6 +1,6 @@
 const crypto = require("crypto");
 
-const generate_random_name = (...args) => {
+const generate_name = (...args) => {
     let generatedGuid = crypto.randomUUID();
     console.log(args);
     console.log(generatedGuid);
@@ -11,4 +11,4 @@ const generate_random_name = (...args) => {
     return oppName;
 }
 
-module.exports = generate_random_name;
+module.exports = generate_name;

@@ -114,7 +114,7 @@ app.post("/api/v1/doRequestToDadata", async(req,res) => {
     }
 });
 
-let predefinedCodeStr = 'const crypto = require("crypto"); const generate_random_name = require("./api/generate_random_name");';
+let predefinedCodeStr = 'const crypto = require("crypto"); const generate_name = require("./api/generate_random_name");';
 
 app.post("/doSomeCode", async(req,res) => {
     console.log(JSON.stringify(req.body));
@@ -133,7 +133,7 @@ app.post("/doSomeCode", async(req,res) => {
                 'if(country == "RU")' +
                 '{country = "Russia"} ' +
                 'else { country = "Other"}; ' +
-            'var randName = generate_random_name(name, phone, email);';
+            'var randName = generate_name(name, phone, email);';
         vm.runInNewContext(code, context);
         console.log(context.phone);
         res.send(context);
