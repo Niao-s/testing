@@ -121,7 +121,7 @@ app.post("/doSomeCode", async(req,res) => {
     try {
         const context = body;
         vm.createContext(context);
-        const code = 'phone = phone.replace("+7", "");';
+        const code = 'phone = phone.replace("+7", ""); if(country == "RU"){country = "Russia"} else { country = "Other"}';
         vm.runInContext(code, context);
         console.log(context.phone);
         res.send(context);
