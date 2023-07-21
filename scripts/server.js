@@ -114,7 +114,7 @@ app.post("/api/v1/doRequestToDadata", async(req,res) => {
     }
 });
 
-let predefinedCodeStr = 'const crypto = require("crypto"); const generate_random_name = require("./api/generate_random_name");\n';
+let predefinedCodeStr = 'const crypto = require("crypto"); const generate_random_name = require("./api/generate_random_name");';
 
 app.post("/doSomeCode", async(req,res) => {
     console.log(JSON.stringify(req.body));
