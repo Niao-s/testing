@@ -6,6 +6,7 @@ const path = require('path');
 const axios = require('axios');
 const fs = require('fs');
 const jwt = require("jsonwebtoken");
+const vm = require('node:vm');
 
 const app = express();
 
@@ -36,7 +37,7 @@ const pool = require('./api/dbConfig');
 const dbInit = require('./api/dbInit');
 dbInit();
 
-app.use(function(req, res, next) {
+app.use('/api/*',(req, res, next) => {
     console.log('Middleware says %s %s', req.method, req.url);
     console.log(req.query.token);
     let token_to_verify = req.query.token;
@@ -107,6 +108,23 @@ app.post("/api/v1/doRequestToDadata", async(req,res) => {
             count: 5
         }, config)
         res.send(response.data);
+    }
+    catch (err) {
+        console.log(err);
+    }
+});
+
+app.post("/doSomeCode", async(req,res) => {
+    console.log(JSON.stringify(req.body));
+    let body = req.body;
+    if(!req.body) return res.sendStatus(400);
+    try {
+        const context = body;
+        vm.createContext(context);
+        const code = 'phone = phone.replace("+7", "");';
+        vm.runInContext(code, context);
+        console.log(context.phone);
+        res.send(context);
     }
     catch (err) {
         console.log(err);

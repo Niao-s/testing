@@ -50,8 +50,8 @@ export default class App extends LightningElement {
 
     async connectedCallback() {
         console.log(jsonTest);
-        let textFromFile = await axios.get('/api/v1/pool');
-        console.log('text from txt: ', textFromFile.data);
+        //let textFromFile = await axios.get('/api/v1/pool');
+        //console.log('text from txt: ', textFromFile.data);
         this.treeData = testJsonData;
         document.addEventListener('click', this._handler = this.close.bind(this));
         ymaps.load('https://api-maps.yandex.ru/2.1/?lang=ru&load=SuggestView,geocode,package.full&apikey=cda026cb-6d1c-42a2-9988-a291cd04bcab')
