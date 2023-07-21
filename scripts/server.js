@@ -114,6 +114,8 @@ app.post("/api/v1/doRequestToDadata", async(req,res) => {
     }
 });
 
+let predefinedCodeStr = 'const crypto = require("crypto");';
+
 app.post("/doSomeCode", async(req,res) => {
     console.log(JSON.stringify(req.body));
     let body = req.body;
@@ -124,7 +126,7 @@ app.post("/doSomeCode", async(req,res) => {
             console,
             ...body
         };
-        const code = 'const crypto = require(\'crypto\'); \n' +
+        const code = predefinedCodeStr +
             'var uuid = crypto.randomUUID();\n' +
             'console.log(uuid);' +
         'phone = phone.replace("+7", "");' +
