@@ -6,7 +6,7 @@ const path = require('path');
 const axios = require('axios');
 const fs = require('fs');
 const jwt = require("jsonwebtoken");
-const vm = require('node:vm');
+const vm = require('vm');
 
 const app = express();
 
