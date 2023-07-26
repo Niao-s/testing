@@ -114,30 +114,21 @@ app.post("/api/v1/doRequestToDadata", async(req,res) => {
     }
 });
 
-let predefinedCodeStr = 'const crypto = require("crypto"); const generate_name = require("./api/generate_random_name");';
+const evaluate_code  = require('./api/vm_code/evaluate_custom_code');
 
 app.post("/doSomeCode", async(req,res) => {
     console.log(JSON.stringify(req.body));
     let body = req.body;
     if(!req.body) return res.sendStatus(400);
     try {
-        let context = {
-            require,
-            console,
-            ...body
-        };
-        const code = predefinedCodeStr +
-            'var uuid = crypto.randomUUID();\n' +
+        let codeStr = 'var uuid = crypto.randomUUID();\n' +
             'console.log(uuid);' +
-        'phone = phone.replace("+7", "");' +
-                'if(country == "RU")' +
-                '{country = "Russia"} ' +
-                'else { country = "Other"}; ' +
+            'phone = phone.replace("+7", "");' +
+            'if(country == "RU")' +
+            '{country = "Russia"} ' +
+            'else { country = "Other"}; ' +
             'var randName = generate_name(name, phone, email, "Test");';
-        vm.runInNewContext(code, context);
-        delete context.require;
-        delete context.console;
-        console.log(context);
+        let context = evaluate_code(body, codeStr);
         res.send(context);
     }
     catch (err) {
