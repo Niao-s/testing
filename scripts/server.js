@@ -135,7 +135,9 @@ app.post("/doSomeCode", async(req,res) => {
                 'else { country = "Other"}; ' +
             'var randName = generate_name(name, phone, email, "Test");';
         vm.runInNewContext(code, context);
-        console.log(context.phone);
+        delete context.require;
+        delete context.console;
+        console.log(context);
         res.send(context);
     }
     catch (err) {
