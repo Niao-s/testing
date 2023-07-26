@@ -12,6 +12,7 @@ const evaluate_code = (body, codeStr) => {
     vm.runInNewContext(code, context);
     delete context.require;
     delete context.console;
+    console.log(context);
     return context;
 }
 
