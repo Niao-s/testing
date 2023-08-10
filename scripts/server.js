@@ -7,6 +7,7 @@ const axios = require('axios');
 const fs = require('fs');
 const jwt = require("jsonwebtoken");
 const vm = require('vm');
+const apiRoutes = require('./router');
 
 const app = express();
 
@@ -37,18 +38,11 @@ const pool = require('./api/dbConfig');
 const dbInit = require('./api/dbInit');
 dbInit();
 
-app.use('/api/*',(req, res, next) => {
-    console.log('Middleware says %s %s', req.method, req.url);
-    console.log(req.query.token);
-    let token_to_verify = req.query.token;
-    try {
-        let decoded = jwt.verify(token_to_verify, 'AUTH_CODE_STR');
-        console.log(decoded);
-    } catch(err) {
-        console.log('wrong token');
-    }
-    next();
-})
+app.get("/api/v1/check_in_server", (req,res) => {
+    res.send("hello from server");
+});
+// Routes
+app.use(apiRoutes());
 
 app.get("/api/v1/pool", async (req, res) => {
     try {
@@ -61,7 +55,7 @@ app.get("/api/v1/pool", async (req, res) => {
     }
 });
 
-app.get('/api/sighn_token',(req, res) => {
+app.get('/login/sighn_token',(req, res) => {
     let test_user = {
         username: 'test',
         userpassword: 'pass',
@@ -71,26 +65,6 @@ app.get('/api/sighn_token',(req, res) => {
     let code_str = 'AUTH_CODE_STR';
     let token = jwt.sign(test_user, code_str, { expiresIn: '1h' });
     res.send(token);
-});
-
-app.get("/api/v1/sample", async (req, res) => {
-    try {
-        console.log('recieved');
-        const response = await axios({
-            url: "https://jsonplaceholder.typicode.com/todos/1",
-            method: "get",
-        });
-        console.log('awaited');
-        res.send(response.data);
-    } catch (err) {
-        console.log(err);
-    }
-});
-
-app.get("/api/v1/writeFile", (req,res) => {
-    let json = require('/app/src/client/static_data/testData.json');
-    console.log(json);
-    res.send(json);
 });
 
 app.post("/api/v1/doRequestToDadata", async(req,res) => {
