@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const router = express.Router();
 
 const apiRoutes = () => {
-    router.use('/api/*',(req, res, next) => {
+    router.use('/*',(req, res, next) => {
         console.log('Middleware says %s %s', req.method, req.url);
         console.log(req.query.token);
         let token_to_verify = req.query.token;
@@ -22,7 +22,7 @@ const apiRoutes = () => {
         }
     });
 
-    router.get("/api/v1/sample", async (req, res) => {
+    router.get("/v1/sample", async (req, res) => {
         try {
             console.log('recieved');
             const response = await axios({
@@ -36,7 +36,7 @@ const apiRoutes = () => {
         }
     });
 
-    router.get("/api/v1/check", async (req, res) => {
+    router.get("/v1/check", async (req, res) => {
         res.send({text : "Hello from router"});
     });
 

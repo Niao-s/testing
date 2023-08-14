@@ -42,7 +42,7 @@ app.get("/api/v1/check_in_server", (req,res) => {
     res.send("hello from server");
 });
 // Routes
-app.use(apiRoutes());
+app.use('/api',apiRoutes());
 
 app.get("/api/v1/pool", async (req, res) => {
     try {
