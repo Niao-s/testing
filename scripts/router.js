@@ -7,10 +7,20 @@ const apiRoutes = () => {
     router.use('/*',(req, res, next) => {
         console.log('Middleware says %s %s', req.method, req.url);
         console.log(req.query.token);
-        let token_to_verify = req.query.token;
+        let token_to_verify = req.query.token || req.headers['x-access-token'];
         try {
             let decoded = jwt.verify(token_to_verify, 'AUTH_CODE_STR');
             console.log(decoded);
+            let test_user = {
+                username: decoded.username,
+                userpassword: decoded.userpassword,
+                email: decoded.email,
+                phone: decoded.phone
+            }
+            let code_str = 'AUTH_CODE_STR';
+            let newToken = jwt.sign(test_user, code_str, { expiresIn: '1h' });
+            res.append('x-access-token-new', newToken);
+            console.log(newToken);
             next();
         } catch(err) {
             console.log('wrong token');

@@ -78,6 +78,30 @@ export default class App extends LightningElement {
 
     }
 
+    getToken = async () => {
+        let tokenResp = await axios.get('/login/sighn_token');
+        console.log(tokenResp.data);
+        localStorage.setItem('token', tokenResp.data.token);
+    }
+
+    callSecureBack = async () => {
+        if(!localStorage.getItem('token')){
+            alert ('please login');
+            return;
+        }
+        let token = localStorage.getItem('token');
+        let config = {
+            headers: {
+                'x-access-token': token
+            }
+        }
+        let reqSecuredData = await axios.get('/api/v1/sample', config);
+        console.log(reqSecuredData);
+        console.log(reqSecuredData.data);
+        console.log(reqSecuredData.headers["x-access-token-new"]);
+        localStorage.setItem('token', reqSecuredData.headers["x-access-token-new"]);
+    }
+
     resolve = (path, obj) => {
         return path.split('.').reduce(function(prev, curr) {
             return prev ? prev[curr] : null
