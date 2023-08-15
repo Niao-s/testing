@@ -54,7 +54,7 @@ app.get("/api/v1/pool", async (req, res) => {
         console.log(err);
     }
 });
-
+const tokenList = {}
 app.get('/login/sighn_token',(req, res) => {
     let test_user = {
         username: 'test',
@@ -64,8 +64,40 @@ app.get('/login/sighn_token',(req, res) => {
     }
     let code_str = 'AUTH_CODE_STR';
     let token = jwt.sign(test_user, code_str, { expiresIn: '1h' });
-    res.send(token);
+    let refreshToken = jwt.sign(test_user, code_str, { expiresIn: '24h'});
+    const response = {
+        "status": "Logged in",
+        "token": token,
+        "refreshToken": refreshToken,
+    };
+    tokenList[refreshToken] = response;
+    res.status(200).json(response);
 });
+
+
+app.post('/refresh_token', (req,res) => {
+    // refresh the damn token
+    const postData = req.body
+    // if refresh token exists
+    if((postData.refreshToken) && (postData.refreshToken in tokenList)) {
+        let test_user = {
+            username: 'test',
+            userpassword: 'pass',
+            email: 'test@mail.com',
+            phone: '123456789'
+        }
+        let token = jwt.sign(test_user, 'AUTH_CODE_STR', { expiresIn: '1h' });
+        const response = {
+            "token": token,
+        }
+        // update the token in the list
+        tokenList[postData.refreshToken].token = token
+        res.status(200).json(response);
+    } else {
+        res.status(404).send('Invalid request')
+    }
+})
+
 
 app.post("/api/v1/doRequestToDadata", async(req,res) => {
     console.log(JSON.stringify(req.body));
