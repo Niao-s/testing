@@ -142,6 +142,21 @@ app.post("/doSomeCode", async(req,res) => {
     }
 });
 
+app.post("/doSomeCodeAnother", async(req,res) => {
+    console.log(JSON.stringify(req.body));
+    let body = req.body;
+    if(!req.body) return res.sendStatus(400);
+    try {
+        let codeStr = 'console.log(Entity.GoName);' +
+            'Entity.GoClientGoName = "test"';
+        let context = evaluate_code(body, codeStr);
+        res.send(context);
+    }
+    catch (err) {
+        console.log(err);
+    }
+});
+
 app.post("/api/v1/doRequestToCreatio", async(req,res) => {
     console.log(JSON.stringify(req.body));
     let body = req.body;
