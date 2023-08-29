@@ -193,13 +193,13 @@ app.get("/api/v1/checkDeliveryZone", async(req,res) => {
     }
 });
 
-app.use(express.static(DIST_DIR));
 
-app.use('/test', (req, res) => {
+app.use(express.static(__dirname));
+app.use('/json_validator', (req, res) => {
     console.log(__dirname);
     res.sendFile(path.join(__dirname + '/index2.html'));
 });
-
+app.use(express.static(DIST_DIR));
 app.use('*', (req, res) => {
     res.sendFile(path.resolve(DIST_DIR, 'index.html'));
 });
