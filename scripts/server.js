@@ -8,6 +8,7 @@ const fs = require('fs');
 const jwt = require("jsonwebtoken");
 const vm = require('vm');
 const apiRoutes = require('./router');
+const nestedProperty = require("nested-property");
 
 const app = express();
 
@@ -40,6 +41,29 @@ dbInit();
 
 app.get("/api/v1/check_in_server", (req,res) => {
     res.send("hello from server");
+});
+
+app.get("/nested_prop", (req,res) => {
+    const data = {
+        a: {
+            b: [
+                10,
+                20
+            ]
+        }
+    };
+    var array = [{
+        a: {
+            b: [0, 1]
+        }
+    }];
+    let testArrData = nestedProperty.get(array, "0.a.b.0");
+    console.log(testArrData);
+    let testData = nestedProperty.get(data, "a.b.1");
+    console.log(testData);
+    nestedProperty.set(data, "req.data", "test");
+    console.log(data);
+    res.send("ok");
 });
 // Routes
 app.use('/api',apiRoutes());
@@ -147,7 +171,7 @@ app.post("/doSomeCodeAnother", async(req,res) => {
     let body = req.body;
     if(!req.body) return res.sendStatus(400);
     try {
-        let codeStr = 'console.log(Entity.GoName);' +
+        let codeStr = 'console.log(Entity.GoName); console.log("test" === "test");' +
             'Entity.GoClientGoName = "test"';
         let context = evaluate_code(body, codeStr);
         res.send(context);
