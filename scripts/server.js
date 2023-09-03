@@ -172,7 +172,7 @@ app.post("/doSomeCodeAnother", async(req,res) => {
     if(!req.body) return res.sendStatus(400);
     try {
         let codeStr = 'console.log(Entity.GoName); console.log("test" === "test");' +
-            'Entity.GoClientGoName = "test"; Entity.TestProp = "test2"; var Test = "123"';
+            'Entity.GoClientGoName = "test"; Entity.TestProp = "test2"; var Test = ["1","2"]; Test.push("3", "4")';
         let context = evaluate_code(body, codeStr);
         res.send(context);
     }
