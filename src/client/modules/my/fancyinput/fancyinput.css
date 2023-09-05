@@ -17,3 +17,12 @@
     height: 95px;
     width: 30%;
 }
+
+.parsedtext{
+    background-color: #ededed;
+    padding: 3px;
+    border: 1px solid lightgray;
+    color: #e83e8c;
+    border-radius: 5px;
+    cursor: pointer;
+}
