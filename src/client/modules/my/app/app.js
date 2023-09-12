@@ -78,6 +78,21 @@ export default class App extends LightningElement {
 
     }
 
+    runSpeechRecog = () => {
+        if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
+            console.log('have speech');
+        }
+        // const recognization = new  window.webkitSpeechRecognition();
+        // console.log(recognization);
+        // recognization.onstart = () => {
+        //     console.log("Listening...");
+        // }
+        // recognization.onresult = (e) => {
+        //     let transcript = e.results[0][0].transcript;
+        //     console.log(transcript);
+        // }
+        // recognization.start();
+    }
     getToken = async () => {
         let tokenResp = await axios.get('/login/sighn_token');
         console.log(tokenResp.data);
