@@ -12,12 +12,15 @@ const nestedProperty = require("nested-property");
 
 const app = express();
 
-app.use(
-    helmet({
-        contentSecurityPolicy: false,
-        crossOriginEmbedderPolicy: false,
-    })
-);
+app.use(helmet({
+    contentSecurityPolicy: {
+        directives: {
+            "script-src": ["'self'", "*.yandex.ru", "*.yandex.net", "yastatic.net"],
+            "img-src": ["'self'", "data:","*.yandex.ru", "*.yandex.net", "yastatic.net"]
+        },
+    },
+    crossOriginEmbedderPolicy: false,
+}));
 app.use(compression());
 
 //For http response parse
