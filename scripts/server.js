@@ -149,7 +149,7 @@ app.post("/api/v1/doRequestToDadata", async(req,res) => {
 
 const evaluate_code  = require('./api/vm_code/evaluate_custom_code');
 
-app.post("/doSomeCode", async(req,res) => {
+app.post("/doSomeCode", (req,res) => {
     console.log(JSON.stringify(req.body));
     let body = req.body;
     if(!req.body) return res.sendStatus(400);
