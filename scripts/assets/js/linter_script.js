@@ -23,8 +23,11 @@ function validateJson () {
     try{
         let json = codeEditor.getValue();
         let jsonStr = json.toString();
-        jsonlint.parse(jsonStr);
+        let parsedJson = jsonlint.parse(jsonStr);
+        console.log(parsedJson);
+        console.log(JSON.stringify(parsedJson, null, 3));
         showErrorElementSuccess();
+        codeEditor.setValue(JSON.stringify(parsedJson, null, 3));
     }
     catch (err) {
         let lineNumber = err;
