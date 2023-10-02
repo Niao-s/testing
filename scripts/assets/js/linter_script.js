@@ -24,8 +24,6 @@ function validateJson () {
         let json = codeEditor.getValue();
         let jsonStr = json.toString();
         let parsedJson = jsonlint.parse(jsonStr);
-        console.log(parsedJson);
-        console.log(JSON.stringify(parsedJson, null, 3));
         showErrorElementSuccess();
         codeEditor.setValue(JSON.stringify(parsedJson, null, 3));
     }
