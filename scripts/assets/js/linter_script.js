@@ -21,8 +21,18 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function validateJson () {
-    let jsonStr = codeEditor.getValue();
-    console.log(jsonStr);
+    try{
+        let json = codeEditor.getValue();
+        console.log(json);
+        let jsonStr = json.toString();
+        console.log(jsonStr);
+        jsonlint.parse(jsonStr);
+        showErrorElementSuccess();
+    }
+    catch (err) {
+        let lineNumber = err;
+        console.log(lineNumber);
+    }
 }
 
 function clearTextarea () {
@@ -35,7 +45,14 @@ function hideErrorElement () {
 }
 
 function showErrorElement () {
-    errorElement.style.display = null;
+    errorElement.style.display = "block";
+}
+
+function showErrorElementSuccess () {
+    showErrorElement();
+    errorElement.classList.remove("alert-danger");
+    errorElement.classList.add("alert-success");
+    errorElement.innerText = "Valid Json";
 }
 
 $(document).ready(function(){
