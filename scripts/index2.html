@@ -11,17 +11,11 @@
     <script src="assets/js/ajax_libs_codemirror_5.65.15_codemirror.js"></script>
     <script src="assets/js/addon_selection_active-line.min.js"></script>
     <script src="assets/js/ajax_libs_jsonlint_1.6.0_jsonlint.min.js"></script>
-    <style>
-        body {  }
-        .container { margin: 150px auto; max-width: 960px; }
-    </style>
 </head>
 
 <body>
 </div>
-<div class="container ">
-    <h1>Client Side JSON Linter & Validator Example</h1>
-    <div class="row"><h3>Paste Your JSON Here</h3></div>
+<div class="linter-container">
     <textarea class="form-control codemirror-textarea" rows="5" autofocus=""></textarea>
     <div class="row">
         <div class="col-md-6">
@@ -29,7 +23,7 @@
             <button class="btn btn-primary text-left mt-2 ml-2" id="reset">Clear</button>
         </div>
     </div>
-    <div class="row">
+    <div class="valid-row">
         <div id=error class="alert alert-danger mt-4 mb-4">
 
         </div>
