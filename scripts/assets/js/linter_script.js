@@ -5,7 +5,6 @@ document.getElementById("clearButton").addEventListener("click", clearTextarea);
 document.getElementById("validateButton").addEventListener("click", validateJson);
 
 document.addEventListener("DOMContentLoaded", function() {
-    console.log('dom contetn loaded');
     let codemirror = document.getElementsByClassName("codemirror-textarea")[0];
     // eslint-disable-next-line no-undef
     codeEditor = CodeMirror.fromTextArea(codemirror,{
@@ -29,7 +28,6 @@ function validateJson () {
     }
     catch (err) {
         let lineNumber = err;
-        console.log(err);
         let regex = /[+-]?\d+(?:\.\d+)?/g;
         let str = lineNumber.toString();
         let lin;
