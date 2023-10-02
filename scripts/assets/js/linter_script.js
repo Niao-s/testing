@@ -1,12 +1,14 @@
-let codeeditor = {};
+let codeEditor = {};
 let errorElement = document.getElementById("error");
 
 document.getElementById("clearButton").addEventListener("click", clearTextarea);
+document.getElementById("validateButton").addEventListener("click", validateJson);
+
 document.addEventListener("DOMContentLoaded", function() {
     console.log('dom contetn loaded');
     let codemirror = document.getElementsByClassName("codemirror-textarea")[0];
     // eslint-disable-next-line no-undef
-    codeeditor = CodeMirror.fromTextArea(codemirror,{
+    codeEditor = CodeMirror.fromTextArea(codemirror,{
         lineNumbers: true,
         lineWrapping: true,
         styleActiveLine: true,
@@ -16,12 +18,24 @@ document.addEventListener("DOMContentLoaded", function() {
         lint:true
 
     });
-    console.log(codeeditor);
 });
 
+function validateJson () {
+    let jsonStr = codeEditor.getValue();
+    console.log(jsonStr);
+}
+
 function clearTextarea () {
-    console.log("clear");
-    codeeditor.setValue('');
+    codeEditor.setValue('');
+    hideErrorElement();
+}
+
+function hideErrorElement () {
+    errorElement.style.display = "none";
+}
+
+function showErrorElement () {
+    errorElement.style.display = null;
 }
 
 $(document).ready(function(){
