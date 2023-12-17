@@ -10,6 +10,7 @@ const vm = require('vm');
 const apiRoutes = require('./router');
 const nestedProperty = require("nested-property");
 const CsvParser = require("json2csv").Parser;
+const schedule = require('node-schedule');
 
 const app = express();
 
@@ -38,6 +39,14 @@ setHeaders = (res) => {
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
     res.setHeader('X-Frame-Options', 'ALLOWALL');
 }
+
+app.get("/api/v1/set_timer", (req,res) => {
+    const date = new Date(Date.now() + 5000);
+    const job = schedule.scheduleJob(date, function(){
+        console.log('Test job after 5 sec');
+    });
+    res.send("timer ready");
+});
 
 app.get("/api/download_csv", (req,res) => {
     const csvFields = ["Id", "Title", "Description", "Published"];
