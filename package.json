@@ -11,6 +11,7 @@
         "json2csv": "^6.0.0-alpha.2",
         "jsonwebtoken": "^9.0.1",
         "nested-property": "^4.0.0",
+        "node-schedule": "^2.1.1",
         "pg": "^8.11.1",
         "ymaps": "^0.2.1"
     },
