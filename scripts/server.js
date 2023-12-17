@@ -9,6 +9,7 @@ const jwt = require("jsonwebtoken");
 const vm = require('vm');
 const apiRoutes = require('./router');
 const nestedProperty = require("nested-property");
+const CsvParser = require("json2csv").Parser;
 
 const app = express();
 
@@ -38,9 +39,16 @@ setHeaders = (res) => {
     res.setHeader('X-Frame-Options', 'ALLOWALL');
 }
 
-const pool = require('./api/dbConfig');
-const dbInit = require('./api/dbInit');
-dbInit();
+app.get("/api/download_csv", (req,res) => {
+    const csvFields = ["Id", "Title", "Description", "Published"];
+    const csvParser = new CsvParser({ csvFields });
+    let tutorials = [];
+    tutorials.push({ id: "1", title: "test", description: "123", published: "eys" });
+    const csvData = csvParser.parse(tutorials);
+    res.setHeader("Content-Type", "text/csv");
+    res.setHeader("Content-Disposition", "attachment; filename=tutorials.csv");
+    res.status(200).end(csvData);
+});
 
 app.get("/api/v1/check_in_server", (req,res) => {
     res.send("hello from server");
