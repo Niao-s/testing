@@ -15,13 +15,7 @@ const schedule = require('node-schedule');
 const app = express();
 
 app.use(helmet({
-    contentSecurityPolicy: {
-        directives: {
-            "script-src": ["'self'", "*.yandex.ru", "*.yandex.net", "yastatic.net"],
-            "img-src": ["'self'", "data:","*.yandex.ru", "*.yandex.net", "yastatic.net"]
-        },
-    },
-    crossOriginEmbedderPolicy: false,
+    contentSecurityPolicy: false,
 }));
 app.use(compression());
 

@@ -317,4 +317,20 @@ export default class App extends LightningElement {
     processFinalData = (evt) => {
         console.log(JSON.stringify(evt.detail));
     }
+
+    callDadata = async () => {
+        let DadataToken = '7877cbceae35dd583719c5b5356e70e4410ed6d1';
+        let DadataEndpoint = 'https://suggestions.dadata.ru/suggestions/api/4_1/rs/findById/party';
+        let dadataId = '7707083893';
+        let config = {
+            headers: {
+                Authorization: 'Token ' + DadataToken,
+            }
+        }
+        const response = await axios.post(DadataEndpoint, {
+            query: dadataId,
+            count: 5
+        }, config)
+        console.log(response);
+    }
 }
