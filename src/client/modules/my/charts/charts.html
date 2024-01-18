@@ -1,0 +1,70 @@
+<template>
+    <div style="width: 100%;
+    max-width: 300px;">
+        <table class="charts-css pie">
+            <caption> Pie Example #1</caption>
+            <tbody>
+            <tr>
+                <td style="--start: 0.0; --end: 0.10;"><span class="data"> $ 10K </span></td>
+            </tr>
+            <tr>
+                <td style="--start: 0.10; --end: 0.15;"><span class="data"> $ 5K </span></td>
+            </tr>
+            <tr>
+                <td style="--start: 0.15; --end: 0.30;"><span class="data"> $ 15K </span></td>
+            </tr>
+            <tr>
+                <td style="--start: 0.30; --end: 0.85;"><span class="data"> $ 55K </span></td>
+            </tr>
+            <tr>
+                <td style="--start: 0.85; --end: 1.0;"><span class="data"> $ 15K </span></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div style="display: flex;
+    flex-direction: row;
+    gap: 40px;
+    width: 100%;
+    max-width: 600px;">
+        <table class="charts-css column hide-data" style="--aspect-ratio: 4 / 3;">
+            <caption> 3D Effect Example #1</caption>
+            <thead>
+            <tr>
+                <th scope="col"> Year</th>
+                <th scope="col"> Progress</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row"> 2016</th>
+                <td style="--size: 0.4;"><span class="data"> 40 </span> <span class="tooltip"> Data: 40 <br> More info... </span>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row"> 2017</th>
+                <td style="--size: 0.2;"><span class="data"> 20 </span></td>
+            </tr>
+            <tr>
+                <th scope="row"> 2018</th>
+                <td style="--size: 0.6;"><span class="data"> 60 </span></td>
+            </tr>
+            <tr>
+                <th scope="row"> 2019</th>
+                <td style="--size: 0.8;"><span class="data"> 80 </span></td>
+            </tr>
+            <tr>
+                <th scope="row"> 2020</th>
+                <td style="--size: 1.0;"><span class="data"> 100 </span></td>
+            </tr>
+            </tbody>
+        </table>
+        <ul class="charts-css legend legend-line" style="flex-shrink: 3;">
+            <li> 2000</li>
+            <li> 2005</li>
+            <li> 2010</li>
+            <li> 2015</li>
+            <li> 2020</li>
+        </ul>
+    </div>
+</template>
