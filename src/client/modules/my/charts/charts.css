@@ -13,3 +13,16 @@
             9px -9px 1px lightgrey,
             10px -10px 1px lightgrey;
 }
+
+ .charts-css {
+     --color-1: rgba(240, 50, 50, 0.73);
+     --color-2: rgba(100, 210, 80, .75);
+     --color-3: rgba(255, 220, 90, .75);
+     --color-4: rgba(255, 180, 50, .75);
+     --color-5: rgba(90, 165, 255, .75);
+     --color-6: rgba(170, 90, 240, .75);
+     --color-7: hsla(0, 0%, 71%, .75);
+     --color-8: hsla(0, 0%, 43%, .75);
+     --color-9: hsla(40, 26%, 55%, .75);
+     --color-10: rgba(130, 50, 20, .75);
+ }
