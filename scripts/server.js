@@ -173,13 +173,15 @@ app.post("/doSomeCode", (req,res) => {
     let body = req.body;
     if(!req.body) return res.sendStatus(400);
     try {
-        let codeStr = 'var uuid = crypto.randomUUID();\n' +
+        let codeStr = 'testFunc = () => {console.log("test func")};' + 'var uuid = crypto.randomUUID();\n' +
             'console.log(uuid);' +
-            'phone = phone.replace("+7", "");' +
-            'if(country == "RU")' +
-            '{country = "Russia"} ' +
-            'else { country = "Other"}; ' +
-            'var randName = generate_name(name, phone, email, "Test");';
+            'this["0"].response.Entity.Phone = this["0"].response.Entity.Phone.replace("+7", "");' +
+            'if(request.testField) {console.log("test field exist")};' +
+            'if(this["0"].response.Entity.CountryName == "Israel")' +
+            '{this["0"].response.Entity.CountryName = "Isr"} ' +
+            'else {this["0"].response.Entity.CountryName = "Other"}; ' +
+            'request.randName = generate_name("Opp:", request.name, request.email, "Test");' +
+            'testFunc();';
         let context = evaluate_code(body, codeStr);
         res.send(context);
     }
