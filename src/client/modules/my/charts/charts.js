@@ -1,4 +1,5 @@
 import {LightningElement, api} from 'lwc';
+const axios = require('axios');
 
 export default class Charts extends LightningElement {
     canvas;
@@ -7,7 +8,7 @@ export default class Charts extends LightningElement {
     data = [70,30];
     myTotal = 0;
     myColor = ['#19ce7d', '#c95252'];
-    labels = ['Success', 'Error'];
+    labels = ['Complete', 'Error'];
 
     constructor() {
         super();
@@ -19,6 +20,11 @@ export default class Charts extends LightningElement {
         styles2.href = './resources/css/charts.min.css';
         styles2.rel = 'stylesheet';
         this.template.appendChild(styles2);
+    }
+
+    async connectedCallback() {
+        let reqData = await axios.get('/api/get_req_data');
+        console.log(reqData.data);
     }
 
     renderedCallback() {

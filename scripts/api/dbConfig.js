@@ -1,11 +1,11 @@
 const { Pool } = require('pg');
 
 const pool = new Pool({
-    user: process.env.PgUsername || 'test_req_base_v2_user',
-    host: process.env.PgHost ||'dpg-ckc7a4usmu8c73apuo00-a.oregon-postgres.render.com',
-    database: process.env.PgBaseName || 'test_req_base_v2',
-    password: process.env.PgPassword || 'P9eOqXKLQWG5xOT0z8zbwDprZ9uaYnog',
-    port: 5432,
+    user: process.env.PgUsername || 'test_req_base_user',
+    host: process.env.PgHost ||'dpg-cm39s80cmk4c73cb059g-a.oregon-postgres.render.com',
+    database: process.env.PgBaseName || 'test_req_base',
+    password: process.env.PgPassword || 'ZjFZbCVF6BzJK4gFijk5CgtHGo19XBy7',
+    port: process.env.PgPort || 5432,
     ssl: true
 });
 

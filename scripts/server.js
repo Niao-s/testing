@@ -42,15 +42,23 @@ app.get("/api/v1/set_timer", (req,res) => {
     res.send("timer ready");
 });
 
-app.get("/api/download_csv", (req,res) => {
-    const csvFields = ["Id", "Title", "Description", "Published"];
-    const csvParser = new CsvParser({ csvFields });
-    let tutorials = [];
-    tutorials.push({ id: "1", title: "test", description: "123", published: "eys" });
-    const csvData = csvParser.parse(tutorials);
-    res.setHeader("Content-Type", "text/csv");
-    res.setHeader("Content-Disposition", "attachment; filename=tutorials.csv");
-    res.status(200).end(csvData);
+const pool = require("./api/dbConfig");
+app.get("/api/get_req_data", async (req,res) => {
+    let selectQuery;
+    if(req.query.req_id) {
+        selectQuery = {
+            text: 'SELECT status, count(status) FROM request_results WHERE request_id = $1 GROUP BY status',
+            values: [req.query.req_id]
+        }
+    }
+    else {
+        selectQuery = {
+            text: 'SELECT status, count(status) FROM request_results GROUP BY status'
+        }
+    }
+    let result = await pool.query(selectQuery);
+    console.log(result.rows);
+    res.send(result.rows);
 });
 
 app.get("/api/v1/check_in_server", (req,res) => {
