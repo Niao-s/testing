@@ -1,14 +1,20 @@
-import {LightningElement, api} from 'lwc';
+import {LightningElement, track} from 'lwc';
 const axios = require('axios');
 
 export default class Charts extends LightningElement {
     canvas;
     ctx;
     lastend = 0;
-    data = [70,30];
+    @track
+    data = [];
     myTotal = 0;
     myColor = ['#19ce7d', '#c95252'];
-    labels = ['Complete', 'Error'];
+    labels = [];
+    reqId;
+    completeCount;
+    errorCount;
+    errorPercent;
+    completePercent;
 
     constructor() {
         super();
@@ -22,15 +28,29 @@ export default class Charts extends LightningElement {
         this.template.appendChild(styles2);
     }
 
-    async connectedCallback() {
-        let reqData = await axios.get('/api/get_req_data');
-        console.log(reqData.data);
-    }
-
-    renderedCallback() {
+    async renderedCallback() {
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        this.reqId = urlParams.get('id');
+        let reqData = this.reqId ? await axios.get('/api/get_req_data?req_id=' + this.reqId) : await axios.get('/api/get_req_data');
+        let errorCountElem = reqData.data.find(elem => elem.status == 'Error');
+        let completeCountElem = reqData.data.find(elem => elem.status == 'Complete');
+        this.errorCount = Number(errorCountElem.count);
+        this.completeCount = Number(completeCountElem.count);
+        this.errorPercent = (this.errorCount/(this.completeCount + this.errorCount))*100;
+        this.errorPercent = this.roundToTwo(this.errorPercent);
+        this.completePercent = 100 - this.errorPercent;
+        console.log(this.errorPercent);
+        console.log(this.completePercent);
+        this.data.push(this.completeCount, this.errorCount);
+        this.labels.push('Complete (' + this.completePercent + '%)', 'Error (' + this.errorPercent + '%)')
         this.canvas = this.template.querySelector("canvas");
         this.ctx = this.canvas.getContext('2d');
         this.drawDiagram();
+    }
+
+    roundToTwo = (number) => {
+        return +(Math.round(number + "e+2") + "e-2");
     }
 
     drawDiagram = () => {
@@ -57,7 +77,7 @@ export default class Charts extends LightningElement {
             this.ctx.textAlign = "center";
             this.ctx.textBaseline = "middle";
             let mid = this.lastend + len / 2
-            this.ctx.fillText(this.labels[i], w + Math.cos(mid) * (r / 2), h + Math.sin(mid) * (r / 2));
+            this.ctx.fillText(this.labels[i], w + Math.cos(mid) * (r / 2), h + Math.sin(mid) * (r / 2) + 15);
             this.lastend += Math.PI * 2 * (this.data[i] / this.myTotal);
         }
     }
