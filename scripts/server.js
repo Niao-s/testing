@@ -12,6 +12,13 @@ const nestedProperty = require("nested-property");
 const CsvParser = require("json2csv").Parser;
 const schedule = require('node-schedule');
 
+const {
+    Worker,
+    isMainThread,
+    workerData,
+    parentPort,
+} = require("worker_threads");
+
 const app = express();
 
 app.use(helmet({
@@ -33,6 +40,19 @@ setHeaders = (res) => {
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
     res.setHeader('X-Frame-Options', 'ALLOWALL');
 }
+
+app.get("/api/v1/test_workers", async (req,res) => {
+    const worker = new Worker('./scripts/worker_thread.js');
+    worker.on("message", count => {
+        res.status(200).send(`The final count :${count}`);
+    });
+    worker.on("error", err => {
+        console.error(err);
+        res.status(400).send(`error worker thread`);
+    });
+    worker.postMessage({coucou : 'john'});
+});
+
 
 app.get("/api/v1/set_timer", (req,res) => {
     const date = new Date(Date.now() + 5000);
