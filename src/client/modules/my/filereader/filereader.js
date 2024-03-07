@@ -101,6 +101,10 @@ export default class Filereader extends LightningElement {
                 ctx.drawImage(img, 0, 0, 700, newHeight);
                 newDataUrl = canvas.toDataURL("image/jpeg", 0.7).replace(/^data:image\/(png|jpg|jpeg);base64,/, "");
                 resolve(newDataUrl);
+                //TRY TO SAVE
+                //newDataUrl = canvas.toDataURL("image/jpeg", 0.7).replace("image/jpeg", "image/octet-stream");
+                //window.location.href=newDataUrl;
+                //resolve(newDataUrl);
             }
         });
     }
