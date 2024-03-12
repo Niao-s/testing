@@ -39,9 +39,9 @@ export default class Charts extends LightningElement {
         this.completeCount = Number(completeCountElem.count);
         this.errorPercent = (this.errorCount/(this.completeCount + this.errorCount))*100;
         this.errorPercent = this.roundToTwo(this.errorPercent);
-        this.completePercent = 100 - this.errorPercent;
+        this.completePercent = this.roundToTwo(100 - this.errorPercent);
         console.log(this.errorPercent);
-        console.log(this.completePercent);
+        console.log(this.roundToTwo(this.completePercent));
         this.data.push(this.completeCount, this.errorCount);
         this.labels.push('Complete (' + this.completePercent + '%)', 'Error (' + this.errorPercent + '%)')
         this.canvas = this.template.querySelector("canvas");
